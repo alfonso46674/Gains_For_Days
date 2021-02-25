@@ -20,17 +20,17 @@ class _SplashState extends State<Splash> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-      // decoration: BoxDecoration(
-      //   image: DecorationImage(
-      //     image: AssetImage("assets/main/coffee.jpg"),
-      //     fit: BoxFit.cover,
-      //   ),
-      // ),
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/main/wellcomeBackground.jpeg"),
+          fit: BoxFit.cover,
+        ),
+      ),
       child: Column(
         children: [
           //Espaciado
           SizedBox(
-            height: 250.0,
+            height: 50.0,
             width: 400,
           ),
           //Imagen de cupping
