@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:proyecto_integrador/utils/constants.dart';
 
 class Wellcome extends StatefulWidget {
   Wellcome({Key key}) : super(key: key);
@@ -11,7 +13,7 @@ class _WellcomeState extends State<Wellcome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: PRIMARY_COLOR,
+      backgroundColor: PRIMARY_COLOR,
       body: SafeArea(
         child: ListView(
           padding: EdgeInsets.symmetric(horizontal: 24.0),
@@ -33,11 +35,14 @@ class _WellcomeState extends State<Wellcome> {
               width: 300,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: Color.fromARGB(255, 0xBC, 0xB0, 0xA1),
+                  primary: BLUE_COLOR,
+                  shape: new RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(10.0),
+                  ),
                 ),
                 child: Text(
                   'REGISTRATE',
-                  style: TextStyle(color: Colors.black),
+                  style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () {
                   Navigator.of(context).pushNamed('/register');
@@ -52,11 +57,14 @@ class _WellcomeState extends State<Wellcome> {
               width: 300,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: Color.fromARGB(255, 0xBC, 0xB0, 0xA1),
+                  primary: BLUE_COLOR,
+                  shape: new RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(10.0),
+                  ),
                 ),
                 child: Text(
                   'INGRESA',
-                  style: TextStyle(color: Colors.black),
+                  style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () {
                   Navigator.of(context).pushNamed('/login');
