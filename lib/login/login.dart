@@ -22,7 +22,7 @@ class _LoginState extends State<Login> {
               children: <Widget>[
                 Image.asset(
                   'assets/main/logo.png',
-                  width: 300,
+                  // width: 300,
                 ),
                 SizedBox(height: 16.0),
               ],
