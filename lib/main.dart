@@ -11,13 +11,8 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return NeumorphicApp(
+    return MaterialApp(
       title: APP_TITLE,
-      theme: NeumorphicThemeData(
-          baseColor: Color(0x00000000),
-          lightSource: LightSource.bottom,
-          depth: 2,
-          intensity: 0.75),
       initialRoute: '/',
       routes: {
         '/': (context) => Splash(),
