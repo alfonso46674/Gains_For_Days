@@ -30,7 +30,7 @@ class _SplashState extends State<Splash> {
         children: [
           //Espaciado
           SizedBox(
-            height: 150.0,
+            height: 250.0,
             width: 400,
           ),
           //Imagen de cupping
