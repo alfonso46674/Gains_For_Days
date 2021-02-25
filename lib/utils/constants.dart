@@ -33,3 +33,19 @@ const MaterialColor BLUE_COLOR = const MaterialColor(
     900: const Color(0xFF214254),
   },
 );
+
+const MaterialColor TEXTFIELD_COLOR = const MaterialColor(
+  0xFF5275C4,
+  const <int, Color>{
+    50: const Color(0xFF5275C4),
+    100: const Color(0xFF5275C4),
+    200: const Color(0xFF5275C4),
+    300: const Color(0xFF5275C4),
+    400: const Color(0xFF5275C4),
+    500: const Color(0xFF5275C4),
+    600: const Color(0xFF5275C4),
+    700: const Color(0xFF5275C4),
+    800: const Color(0xFF5275C4),
+    900: const Color(0xFF5275C4),
+  },
+);

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_integrador/utils/constants.dart';
 
 class Login extends StatefulWidget {
   Login({Key key}) : super(key: key);
@@ -11,7 +12,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: PRIMARY_COLOR,
+      backgroundColor: PRIMARY_COLOR,
       body: SafeArea(
         child: ListView(
           padding: EdgeInsets.symmetric(horizontal: 24.0),
@@ -39,7 +40,7 @@ class _LoginState extends State<Login> {
               decoration: InputDecoration(
                   filled: true,
                   labelText: 'Nombre completo',
-                  fillColor: Colors.white),
+                  fillColor: Colors.transparent),
             ),
             //Espaciado
             SizedBox(height: 12.0),
@@ -73,14 +74,13 @@ class _LoginState extends State<Login> {
               width: 300,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    primary: Color.fromARGB(255, 0xBC, 0xB0, 0xA1),
+                    primary: BLUE_COLOR,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                        side: BorderSide(
-                            color: Color.fromARGB(255, 0xBC, 0xB0, 0xA1)))),
+                      borderRadius: BorderRadius.circular(10.0),
+                    )),
                 child: Text(
                   'ENTRAR',
-                  style: TextStyle(color: Colors.black),
+                  style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () {
                   Navigator.of(context).pushNamed('/home');

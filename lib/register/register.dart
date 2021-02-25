@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_integrador/utils/constants.dart';
 
 class Register extends StatefulWidget {
   Register({Key key}) : super(key: key);
@@ -13,7 +14,7 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: PRIMARY_COLOR,
+      backgroundColor: PRIMARY_COLOR,
       body: SafeArea(
         child: ListView(
           padding: EdgeInsets.symmetric(horizontal: 24.0),
@@ -101,7 +102,7 @@ class _RegisterState extends State<Register> {
               width: 300,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: Color.fromARGB(255, 0xBC, 0xB0, 0xA1),
+                  primary: BLUE_COLOR,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                       side: BorderSide(
@@ -109,7 +110,7 @@ class _RegisterState extends State<Register> {
                 ),
                 child: Text(
                   'REGISTRATE',
-                  style: TextStyle(color: Colors.black),
+                  style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () {
                   Navigator.of(context).pushNamed('/home');
