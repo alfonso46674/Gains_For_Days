@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:proyecto_integrador/ejercicios/busqueda_ejercicios.dart';
 import 'package:proyecto_integrador/ejercicios/menu_ejercicios.dart';
 import 'package:proyecto_integrador/login/login.dart';
 import 'package:proyecto_integrador/register/register.dart';
+import 'package:proyecto_integrador/rutinas/mis_rutinas.dart';
 import 'package:proyecto_integrador/splash/splash.dart';
 import 'package:proyecto_integrador/utils/constants.dart';
-import 'package:proyecto_integrador/wellcome/wellcome.dart';
+import 'package:proyecto_integrador/welcome/welcome.dart';
 
 void main() => runApp(MyApp());
 
@@ -17,10 +19,12 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => Splash(),
-        '/wellcome': (context) => Wellcome(),
+        '/welcome': (context) => Welcome(),
         '/login': (context) => Login(),
         '/register': (context) => Register(),
         '/home': (context) => MenuEjercicios(),
+        '/busquedaEjercicios': (context) => BusquedaEjercicios(),
+        '/misRutinas':(context) => MisRutinas(),
       },
     );
   }
