@@ -12,7 +12,7 @@ class _SplashState extends State<Splash> {
   void initState() {
     //Manage the splash screen time
     Future.delayed(Duration(milliseconds: 3000),
-        () => {Navigator.of(context).pushNamed('/wellcome')});
+        () => {Navigator.of(context).pushNamed('/welcome')});
     super.initState();
   }
 

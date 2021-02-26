@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:proyecto_integrador/utils/constants.dart';
 
-class Wellcome extends StatefulWidget {
-  Wellcome({Key key}) : super(key: key);
+class Welcome extends StatefulWidget {
+  Welcome({Key key}) : super(key: key);
 
   @override
-  _WellcomeState createState() => _WellcomeState();
+  _WelcomeState createState() => _WelcomeState();
 }
 
-class _WellcomeState extends State<Wellcome> {
+class _WelcomeState extends State<Welcome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
