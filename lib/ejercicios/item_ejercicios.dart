@@ -11,7 +11,16 @@ class _ItemMenuEjerciciosState extends State<ItemMenuEjercicios> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Card(child: ListTile(leading:FlutterLogo(),title: Text("Abdomen"),)),
+      child: TextButton(
+        child: Card(
+            child: ListTile(
+          leading: FlutterLogo(),
+          title: Text("Abdomen"),
+        )),
+        onPressed: () {
+          Navigator.pushNamed(context, '/listaEjercicios');
+        },
+      ),
     );
   }
 }

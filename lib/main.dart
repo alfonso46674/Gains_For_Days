@@ -9,6 +9,8 @@ import 'package:proyecto_integrador/splash/splash.dart';
 import 'package:proyecto_integrador/utils/constants.dart';
 import 'package:proyecto_integrador/welcome/welcome.dart';
 
+import 'ejercicios/lista_ejercicios.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -23,6 +25,7 @@ class MyApp extends StatelessWidget {
         '/login': (context) => Login(),
         '/register': (context) => Register(),
         '/home': (context) => MenuEjercicios(),
+        '/listaEjercicios': (context) => ListaEjercicios(),
         '/busquedaEjercicios': (context) => BusquedaEjercicios(),
         '/misRutinas':(context) => MisRutinas(),
       },
