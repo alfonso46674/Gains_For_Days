@@ -51,6 +51,7 @@ flutter:
   assets:
       - assets/main/logo.png
       - assets/main/wellcomeBackground.jpeg
+      - assets/dummy-square.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

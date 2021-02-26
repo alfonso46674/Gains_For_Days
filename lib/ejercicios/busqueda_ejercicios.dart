@@ -81,6 +81,7 @@ class _BusquedaEjerciciosState extends State<BusquedaEjercicios> {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
+                    //TODO: Usar FilterChips en lugar de InputChips
                     InputChip(
                       // avatar: CircleAvatar(
                       //   backgroundColor: Colors.grey.shade800,
