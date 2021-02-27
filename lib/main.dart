@@ -4,6 +4,7 @@ import 'package:proyecto_integrador/ejercicios/busqueda_ejercicios.dart';
 import 'package:proyecto_integrador/ejercicios/menu_ejercicios.dart';
 import 'package:proyecto_integrador/login/login.dart';
 import 'package:proyecto_integrador/register/register.dart';
+import 'package:proyecto_integrador/rutinas/crear_rutina.dart';
 import 'package:proyecto_integrador/rutinas/mis_rutinas.dart';
 import 'package:proyecto_integrador/splash/splash.dart';
 import 'package:proyecto_integrador/utils/constants.dart';
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         '/detailsEjercicios': (context) => DetailsEjercicios(),
         '/busquedaEjercicios': (context) => BusquedaEjercicios(),
         '/misRutinas':(context) => MisRutinas(),
+        '/crearRutina':(context) => CrearRutina(),
       },
     );
   }
