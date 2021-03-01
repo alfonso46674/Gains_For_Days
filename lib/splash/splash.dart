@@ -10,7 +10,6 @@ class Splash extends StatefulWidget {
 class _SplashState extends State<Splash> {
   @override
   void initState() {
-    //Manage the splash screen time
     Future.delayed(Duration(milliseconds: 3000),
         () => {Navigator.of(context).pushNamed('/welcome')});
     super.initState();
