@@ -1,4 +1,4 @@
 # proyecto_integrador
 
-Proyect de Dispositivos Moviles
+Proyecto de Dispositivos Moviles
 
