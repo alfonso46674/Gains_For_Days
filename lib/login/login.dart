@@ -32,7 +32,7 @@ class _LoginState extends State<Login> {
             //INPUTS PARA USUARIO Y CONTRASEÑA
             //Username
             Text(
-              'Nombre completo:',
+              'Nombre completo :',
               style: TextStyle(color: Colors.white),
             ),
             TextField(
