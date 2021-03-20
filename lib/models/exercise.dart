@@ -5,7 +5,7 @@ class Exercise extends Equatable {
   final int id;
   final String name;
   final int category;
-  final int equipment;
+  final List<dynamic> equipment;
   final String description; 
 
   Exercise({

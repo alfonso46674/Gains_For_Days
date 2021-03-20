@@ -15,7 +15,7 @@ class ExerciseApiClient {
 
   //Return all of the exercises in english
   Future<Exercise> fetchExercises() async {
-    final url = '$_baseUrl/exercise?language=2';
+    final url = '$_baseUrl/exercise/345?language=2';
     final response = await this.httpClient.get(Uri.parse(url));
 
     if(response.statusCode != 200){
