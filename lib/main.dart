@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:proyecto_integrador/ejercicios/busqueda_ejercicios.dart';
@@ -13,7 +14,11 @@ import 'package:proyecto_integrador/welcome/welcome.dart';
 import 'ejercicios/details_ejercicios.dart';
 import 'ejercicios/lista_ejercicios.dart';
 
-void main() => runApp(MyApp());
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+} 
 
 class MyApp extends StatelessWidget {
   @override
