@@ -69,15 +69,15 @@ class _ListaEjerciciosState extends State<ListaEjercicios> {
         //Ejercicios cargados exitosamente
         if (state is EjerciciosCargadosState) {
           //TODO: Regrear lista de ejercicios que cumplan con condicion
-          return ListTile(
-            leading: Text(
-              '${state.ejercicio.id}',
-              style: TextStyle(fontSize: 10.0),
-            ),
-            title: Text(state.ejercicio.name),
-            isThreeLine: true,
-            subtitle: Text(state.ejercicio.description),
-            dense: true,
+          return ListView.builder(
+            scrollDirection: Axis.vertical,
+            shrinkWrap: true,
+            itemCount: 15,
+            itemBuilder: (BuildContext context, int index) {
+              return ItemMenuEjercicios(
+                ejercicio: state.ejercicio,
+              );
+            },
           );
         }
 
@@ -89,12 +89,13 @@ class _ListaEjerciciosState extends State<ListaEjercicios> {
   }
 }
 
-
-// return ListView.builder(
-//             scrollDirection: Axis.vertical,
-//             shrinkWrap: true,
-//             itemCount: 15,
-//             itemBuilder: (BuildContext context, int index) {
-//               return ItemMenuEjercicios(state);
-//             },
+// ListTile(
+//             leading: Text(
+//               '${state.ejercicio.id}',
+//               style: TextStyle(fontSize: 10.0),
+//             ),
+//             title: Text(state.ejercicio.name),
+//             isThreeLine: true,
+//             subtitle: Text(state.ejercicio.description),
+//             dense: true,
 //           );

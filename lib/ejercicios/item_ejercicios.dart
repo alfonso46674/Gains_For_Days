@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_integrador/models/exercise.dart';
 
 class ItemMenuEjercicios extends StatefulWidget {
-  ItemMenuEjercicios({Key key}) : super(key: key);
+  final Exercise ejercicio;
+  ItemMenuEjercicios({
+    Key key,
+    @required this.ejercicio,
+  }) : super(key: key);
 
   @override
   _ItemMenuEjerciciosState createState() => _ItemMenuEjerciciosState();
@@ -17,11 +22,11 @@ class _ItemMenuEjerciciosState extends State<ItemMenuEjercicios> {
         child: Card(
             child: ListTile(
           leading: Image.asset(
-                  'assets/dummy-square.png',
-                  width: 64,
-                  height: 64,
-                ),
-          title: Text("Abdomen"),
+            'assets/dummy-square.png',
+            width: 64,
+            height: 64,
+          ),
+          title: Text("${widget.ejercicio.name}"),
         )),
         onPressed: () {
           if (ModalRoute.of(context).settings.name == "/listaEjercicios") {
