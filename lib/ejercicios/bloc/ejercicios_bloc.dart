@@ -35,9 +35,9 @@ class EjerciciosBloc extends Bloc<EjerciciosEvent, EjerciciosState> {
       yield EjerciciosCargandoState();
       //intentar hacer el fetch para bajarlos
       try{
-        Exercise ejercicio = await repositorioEjercicios.fetchExercises();
-        print(ejercicio);
-        yield EjerciciosCargadosState(ejercicio: ejercicio);
+        List<dynamic> ejercicios = await repositorioEjercicios.fetchExercises();
+        // print(ejercicios);
+        yield EjerciciosCargadosState(exercisesList: ejercicios);
       }catch(e){
         print(e);
         yield EjerciciosErrorState();

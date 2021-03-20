@@ -14,16 +14,23 @@ class ExerciseApiClient {
   }) : assert(httpClient != null);
 
   //Return all of the exercises in english
-  Future<Exercise> fetchExercises() async {
-    final url = '$_baseUrl/exercise/345?language=2';
+  Future<List<dynamic>> fetchExercises() async {
+    final url = '$_baseUrl/exercise?language=2';
     final response = await this.httpClient.get(Uri.parse(url));
+    final List<dynamic> exerciseList = [];
 
+    
     if(response.statusCode != 200){
       throw new Exception('Error getting exercises');
     }
 
     final json = jsonDecode(response.body);
-    return Exercise.fromJson(json);
+    //print(json[keys])
+    for(int i = 0; i < json['results'].length; i++){
+       exerciseList.add(Exercise.fromJson(json['results'][i]));
+    }
+
+    return exerciseList;
 
   }
 }

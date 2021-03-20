@@ -17,12 +17,12 @@ class EjerciciosCargandoState extends EjerciciosState {}
 
 //cuando se hizo un fetch exitoso
 class EjerciciosCargadosState extends EjerciciosState {
-  final Exercise ejercicio;
+  final List<dynamic> exercisesList;
 
-  const EjerciciosCargadosState({@required this.ejercicio}) : assert(ejercicio != null);
+  const EjerciciosCargadosState({@required this.exercisesList}) : assert(exercisesList != null);
 
   @override
-  List<Object> get props => [ejercicio];
+  List<Object> get props => [exercisesList];
 
 }
 

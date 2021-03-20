@@ -10,7 +10,7 @@ class ExerciseRepository {
   ExerciseRepository({@required this.exerciseApiClient})
     : assert(exerciseApiClient != null);
 
-  Future<Exercise> fetchExercises() async {
+  Future<List<dynamic>> fetchExercises() async {
     return await exerciseApiClient.fetchExercises();
   }
 }

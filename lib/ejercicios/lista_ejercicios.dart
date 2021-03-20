@@ -72,10 +72,10 @@ class _ListaEjerciciosState extends State<ListaEjercicios> {
           return ListView.builder(
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
-            itemCount: 15,
+            itemCount: state.exercisesList.length,
             itemBuilder: (BuildContext context, int index) {
               return ItemMenuEjercicios(
-                ejercicio: state.ejercicio,
+                ejercicio: state.exercisesList[index],
               );
             },
           );
@@ -88,14 +88,3 @@ class _ListaEjerciciosState extends State<ListaEjercicios> {
     ));
   }
 }
-
-// ListTile(
-//             leading: Text(
-//               '${state.ejercicio.id}',
-//               style: TextStyle(fontSize: 10.0),
-//             ),
-//             title: Text(state.ejercicio.name),
-//             isThreeLine: true,
-//             subtitle: Text(state.ejercicio.description),
-//             dense: true,
-//           );
