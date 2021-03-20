@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "278134341862",
+    "project_id": "proyecto-integrador-dm",
+    "storage_bucket": "proyecto-integrador-dm.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:278134341862:android:66a52dbd756e8ca04b3b27",
+        "android_client_info": {
+          "package_name": "com.example.gains_for_days"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "278134341862-b4l5qnp0s2e4p29t35dlj976d7ub65cs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDe8FJhcpttTvGsC62SRVf_HsGWWJWItbE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "278134341862-b4l5qnp0s2e4p29t35dlj976d7ub65cs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
