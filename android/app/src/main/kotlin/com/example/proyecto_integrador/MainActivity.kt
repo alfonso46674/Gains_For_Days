@@ -1,4 +1,4 @@
-package com.example.proyecto_integrador
+package com.example.gains_for_days
 
 import io.flutter.embedding.android.FlutterActivity
 
