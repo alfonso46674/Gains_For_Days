@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:proyecto_integrador/auth/bloc/auth_bloc.dart';
 import 'package:proyecto_integrador/ejercicios/busqueda_ejercicios.dart';
 import 'package:proyecto_integrador/ejercicios/menu_ejercicios.dart';
 import 'package:proyecto_integrador/login/login.dart';
@@ -17,7 +19,10 @@ import 'ejercicios/lista_ejercicios.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  runApp(BlocProvider(
+    create: (context) => AuthBloc()..add(VerifyAuthenticationEvent()),
+    child: MyApp(),
+  ));
 } 
 
 class MyApp extends StatelessWidget {
@@ -25,9 +30,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: APP_TITLE,
-      initialRoute: '/',
+      home: BlocBuilder<AuthBloc, AuthState>(
+        builder: (context, state) {
+          if(state is AlreadyAuthState) return MenuEjercicios();
+          if(state is UnAuthState) return Splash();
+          return Splash();
+        },
+      ),
+      // initialRoute: '/',
+      
       routes: {
-        '/': (context) => Splash(),
+        // '/': (context) => Splash(),
         '/welcome': (context) => Welcome(),
         '/login': (context) => Login(),
         '/register': (context) => Register(),
