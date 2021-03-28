@@ -24,6 +24,11 @@ class _WelcomeState extends State<Welcome> {
     _loginBloc.add(LoginWithGoogleEvent());
   }
 
+  void _anonymousLogIn(bool _) {
+    print("anonimo");
+    _loginBloc.add(LoginAnonymousEvent());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -124,6 +129,7 @@ class _WelcomeState extends State<Welcome> {
                     return Container(
                         child: FormBody(
                       onGoogleLoginTap: _googleLogIn,
+                      onAnonymousLoginTap: _anonymousLogIn,
                     ));
                   },
                 ),

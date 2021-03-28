@@ -5,10 +5,13 @@ import 'dart:ui';
 class FormBody extends StatelessWidget {
   // cambiar a un solo value changed que reciba enum de login
   final ValueChanged<bool> onGoogleLoginTap;
+  final ValueChanged<bool> onAnonymousLoginTap;
+
 
   FormBody({
     Key key,
     @required this.onGoogleLoginTap,
+    @required this.onAnonymousLoginTap,
   }) : super(key: key);
 
   @override
@@ -43,6 +46,43 @@ class FormBody extends StatelessWidget {
           ),
         ),
         SizedBox(height: 24),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Expanded(
+              child: Container(
+                height: 40,
+                margin: EdgeInsets.symmetric(horizontal: 32),
+                child: MaterialButton(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18.0),
+                  ),
+                  onPressed: () => onAnonymousLoginTap(true),
+                  color: Colors.black,
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.masks,
+                        color: Colors.grey[200],
+                      ),
+                      SizedBox(width: 14),
+                      Expanded(
+                        child: Text(
+                          "Usuario anonimo",
+                          style: TextStyle(
+                            color: Colors.grey[200],
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ],
     );
   }

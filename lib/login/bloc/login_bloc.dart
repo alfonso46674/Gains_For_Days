@@ -40,6 +40,15 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         print(e.toString());
         yield LoginErrorState(error: "Error al hacer login: ${e.toString()}");
       }
+    } else if (event is LoginAnonymousEvent) {
+      try {
+        yield LoginLoadingState();
+        await _authProvider.anonymousSignIn();
+        yield LoginSuccessState();
+      } catch (e) {
+        print(e.toString());
+        yield LoginErrorState(error: "Error al hacer login: ${e.toString()}");
+      }
     }
   }
 }

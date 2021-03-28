@@ -31,4 +31,18 @@ class UserAuthProvider {
       final User user = authResult.user;
       assert(!user.isAnonymous);
     }
+
+//anonimo sign in
+  Future<void> anonymousSignIn() async {
+    //hacer el sign in
+    var user = _auth.currentUser;
+    final anonymousUser = (await _auth.signInAnonymously()).user;
+    //Mostrar el nombre del usuario como los digitos del 0 al 5 de su id, y con invitado al final
+    await anonymousUser.updateProfile(
+        displayName: "${anonymousUser.uid.substring(0, 5)}_Invitado");
+
+    //recargar el usuario
+    await anonymousUser.reload();
+  }
+  
 }
