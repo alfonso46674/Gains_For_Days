@@ -126,7 +126,7 @@ class _WelcomeState extends State<Welcome> {
                     if (state is LoginSuccessState) {
                       //https://stackoverflow.com/questions/55618717/error-thrown-on-navigator-pop-until-debuglocked-is-not-true
                       Future.delayed(Duration.zero, () {
-                        Navigator.of(context).pushNamed('/home');
+                        Navigator.of(context).pushNamed('/mainMenu');
                       });
                     }
                     return Container(

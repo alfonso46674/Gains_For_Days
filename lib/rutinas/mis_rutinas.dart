@@ -55,30 +55,6 @@ class _MisRutinasState extends State<MisRutinas> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomAppBar(
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            IconButton(
-              icon: Icon(Icons.fitness_center),
-              onPressed: () {
-                Navigator.pushNamed(context, '/home');
-              },
-            ),
-            IconButton(
-              icon: Icon(Icons.view_list),
-              onPressed: () {
-                // Navigator.pushNamed(context, '/misRutinas');
-              },
-            ),
-            IconButton(
-              icon: Icon(Icons.exit_to_app),
-              onPressed: () {},
-            ),
-          ],
-        ),
-      ),
     );
   }
 }

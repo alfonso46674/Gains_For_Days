@@ -120,7 +120,7 @@ class _RegisterState extends State<Register> {
                   style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () {
-                  // Navigator.of(context).pushNamed('/home');
+                  Navigator.of(context).pushNamed('/login');
                 },
               ),
             ),

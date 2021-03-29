@@ -7,6 +7,7 @@ import 'package:proyecto_integrador/ejercicios/busqueda_ejercicios.dart';
 import 'package:proyecto_integrador/ejercicios/menu_ejercicios.dart';
 import 'package:proyecto_integrador/login/login.dart';
 import 'package:proyecto_integrador/register/register.dart';
+import 'package:proyecto_integrador/restartWidget.dart';
 import 'package:proyecto_integrador/rutinas/crear_rutina.dart';
 import 'package:proyecto_integrador/rutinas/mis_rutinas.dart';
 import 'package:proyecto_integrador/splash/splash.dart';
@@ -15,15 +16,20 @@ import 'package:proyecto_integrador/welcome/welcome.dart';
 
 import 'ejercicios/details_ejercicios.dart';
 import 'ejercicios/lista_ejercicios.dart';
+import 'mainMenu/mainMenu.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(BlocProvider(
-    create: (context) => AuthBloc()..add(VerifyAuthenticationEvent()),
-    child: MyApp(),
-  ));
-} 
+  runApp(
+    RestartWidget(
+      child: BlocProvider(
+        create: (context) => AuthBloc()..add(VerifyAuthenticationEvent()),
+        child: MyApp(),
+      ),
+    ),
+  );
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -32,24 +38,25 @@ class MyApp extends StatelessWidget {
       title: APP_TITLE,
       home: BlocBuilder<AuthBloc, AuthState>(
         builder: (context, state) {
-          if(state is AlreadyAuthState) return MenuEjercicios();
-          if(state is UnAuthState) return Splash();
+          if (state is AlreadyAuthState) return MainMenu();
+          if (state is UnAuthState) return Splash();
           return Splash();
         },
       ),
       // initialRoute: '/',
-      
+
       routes: {
         // '/': (context) => Splash(),
         '/welcome': (context) => Welcome(),
         '/login': (context) => Login(),
         '/register': (context) => Register(),
-        '/home': (context) => MenuEjercicios(),
+        '/mainMenu': (context) => MainMenu(),
+        '/menuEjercicios': (context) => MenuEjercicios(),
         '/listaEjercicios': (context) => ListaEjercicios(),
         '/detailsEjercicios': (context) => DetailsEjercicios(),
         '/busquedaEjercicios': (context) => BusquedaEjercicios(),
-        '/misRutinas':(context) => MisRutinas(),
-        '/crearRutina':(context) => CrearRutina(),
+        '/misRutinas': (context) => MisRutinas(),
+        '/crearRutina': (context) => CrearRutina(),
       },
     );
   }

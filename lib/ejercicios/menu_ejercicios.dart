@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:proyecto_integrador/auth/bloc/auth_bloc.dart';
+import 'package:proyecto_integrador/restartWidget.dart';
 import 'item_ejercicios.dart';
 
 class MenuEjercicios extends StatelessWidget {
@@ -17,6 +18,19 @@ class MenuEjercicios extends StatelessWidget {
             icon: Icon(Icons.search),
             onPressed: () {
               Navigator.pushNamed(context, '/busquedaEjercicios');
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.exit_to_app),
+            onPressed: () {
+              Future.delayed(Duration(seconds: 1), () {
+                BlocProvider.of<AuthBloc>(context).add(
+                  SignOutAuthenticationEvent(),
+                );
+              });
+              Future.delayed(Duration(seconds: 1), () {
+              RestartWidget.restartApp(context);
+              });
             },
           ),
         ],
@@ -154,40 +168,6 @@ class MenuEjercicios extends StatelessWidget {
           ),
         ],
       )),
-      //TODO: Usar tabBars para manejar cambiar de pestañas
-      //TODO: Crear un widget para esto para que sea mas facil portarlo a otros archivos
-      bottomNavigationBar: BottomAppBar(
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            IconButton(
-              icon: Icon(Icons.fitness_center),
-              onPressed: () {},
-            ),
-            IconButton(
-              icon: Icon(Icons.view_list),
-              onPressed: () {
-                Navigator.pushNamed(context, '/misRutinas');
-              },
-            ),
-            IconButton(
-              icon: Icon(Icons.exit_to_app),
-              onPressed: () {
-                // Navigator.of(context).pushNamed('/welcome');
-                // Navigator.pushNamed(context, '/welcome');
-                Future.delayed(Duration.zero, () {
-                  Navigator.of(context).pushNamed('/home');
-                  BlocProvider.of<AuthBloc>(context).add(
-                    SignOutAuthenticationEvent(),
-                  );
-                  
-                });
-              },
-            ),
-          ],
-        ),
-      ),
     );
   }
 }
