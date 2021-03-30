@@ -3,23 +3,35 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
+import 'package:proyecto_integrador/repositories/exerciseApiClient.dart';
+import 'package:proyecto_integrador/repositories/exercise_repository.dart';
+import 'package:http/http.dart' as http;
 import '../user_auth_provider.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  AuthBloc() : super(AuthInitial());
-
   //auth provider
   UserAuthProvider _authProvider = UserAuthProvider();
+
+  //exercise repository
+  ExerciseRepository repositorioEjercicios = ExerciseRepository(
+    exerciseApiClient: ExerciseApiClient(
+      httpClient: http.Client(),
+    ),
+  );
+
+  AuthBloc() : super(AuthInitial());
 
   @override
   Stream<AuthState> mapEventToState(
     AuthEvent event,
   ) async* {
     if (event is VerifyAuthenticationEvent) {
-      //REQUEST A APIS
+      //REQUEST A APIS - Cargar los ejercicios desde que se intenta hacer verificacion en el main
+      await repositorioEjercicios.fetchExercises();
       //ACCESO A BD LOCALES
       //REVISAR ACCESO A INTERNET
       //Lo necesario para inicializar datos de la app

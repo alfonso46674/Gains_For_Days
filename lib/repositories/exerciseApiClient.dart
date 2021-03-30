@@ -14,11 +14,10 @@ class ExerciseApiClient {
   ExerciseApiClient({@required this.httpClient}) : assert(httpClient != null);
 
   //Return all of the exercises in english and with a limit of 200 exercises
-  Future<List<dynamic>> fetchExercises() async {
+  Future<void> fetchExercises() async {
     final url = '$_baseUrl/exercise?language=2&limit=200';
     final response = await this.httpClient.get(Uri.parse(url));
     final List<dynamic> exerciseList = [];
-
 
     if (response.statusCode != 200) {
       throw new Exception('Error getting exercises');
@@ -31,18 +30,11 @@ class ExerciseApiClient {
       exerciseList.add(Exercise.fromJson(json['results'][i]));
     }
 
-    // print(_appDataBox.length);
-    // await _appDataBox.clear();
-    // print(_appDataBox.length);
-
-    //Save exercises in hive box
-    for(int i = 0; i < json['results'].length; i++){
-      await _appDataBox.put('exercises', exerciseList[i]);
-    }
-
-    // print('Hive exercises: ${_appDataBox.get('exercises')}');
-
-    return exerciseList;
+    print(_appDataBox.length);
+    await _appDataBox.clear();
+    print(_appDataBox.length);
+  
+    await _appDataBox.put('exercises', exerciseList);
 
      }
 }
