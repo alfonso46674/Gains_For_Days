@@ -83,7 +83,7 @@ class _LoginState extends State<Login> {
                   style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () {
-                  Navigator.of(context).pushNamed('/home');
+                  Navigator.of(context).pushNamed('/mainMenu');
                 },
               ),
             ),

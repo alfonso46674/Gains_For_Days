@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:proyecto_integrador/auth/bloc/auth_bloc.dart';
+import 'package:proyecto_integrador/restartWidget.dart';
 import 'item_ejercicios.dart';
 
 class MenuEjercicios extends StatelessWidget {
@@ -15,6 +18,19 @@ class MenuEjercicios extends StatelessWidget {
             icon: Icon(Icons.search),
             onPressed: () {
               Navigator.pushNamed(context, '/busquedaEjercicios');
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.exit_to_app),
+            onPressed: () {
+              Future.delayed(Duration(seconds: 1), () {
+                BlocProvider.of<AuthBloc>(context).add(
+                  SignOutAuthenticationEvent(),
+                );
+              });
+              Future.delayed(Duration(seconds: 1), () {
+              RestartWidget.restartApp(context);
+              });
             },
           ),
         ],
@@ -34,7 +50,7 @@ class MenuEjercicios extends StatelessWidget {
                 title: Text("Abdomen"),
               ),
             ),
-            onPressed: (){
+            onPressed: () {
               Navigator.pushNamed(context, '/listaEjercicios');
             },
           ),
@@ -50,7 +66,7 @@ class MenuEjercicios extends StatelessWidget {
                 title: Text("Pecho"),
               ),
             ),
-            onPressed: (){
+            onPressed: () {
               Navigator.pushNamed(context, '/listaEjercicios');
             },
           ),
@@ -66,7 +82,7 @@ class MenuEjercicios extends StatelessWidget {
                 title: Text("Brazos"),
               ),
             ),
-            onPressed: (){
+            onPressed: () {
               Navigator.pushNamed(context, '/listaEjercicios');
             },
           ),
@@ -82,7 +98,7 @@ class MenuEjercicios extends StatelessWidget {
                 title: Text("Espalda"),
               ),
             ),
-            onPressed: (){
+            onPressed: () {
               Navigator.pushNamed(context, '/listaEjercicios');
             },
           ),
@@ -98,7 +114,7 @@ class MenuEjercicios extends StatelessWidget {
                 title: Text("Piernas"),
               ),
             ),
-            onPressed: (){
+            onPressed: () {
               Navigator.pushNamed(context, '/listaEjercicios');
             },
           ),
@@ -114,7 +130,7 @@ class MenuEjercicios extends StatelessWidget {
                 title: Text("Pantorrillas"),
               ),
             ),
-            onPressed: (){
+            onPressed: () {
               Navigator.pushNamed(context, '/listaEjercicios');
             },
           ),
@@ -130,7 +146,7 @@ class MenuEjercicios extends StatelessWidget {
                 title: Text("Hombros"),
               ),
             ),
-            onPressed: (){
+            onPressed: () {
               Navigator.pushNamed(context, '/listaEjercicios');
             },
           ),
@@ -146,37 +162,12 @@ class MenuEjercicios extends StatelessWidget {
                 title: Text("Todos los ejercicios"),
               ),
             ),
-            onPressed: (){
+            onPressed: () {
               Navigator.pushNamed(context, '/listaEjercicios');
             },
           ),
-          
         ],
       )),
-      //TODO: Usar tabBars para manejar cambiar de pestañas
-      //TODO: Crear un widget para esto para que sea mas facil portarlo a otros archivos
-      bottomNavigationBar: BottomAppBar(
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            IconButton(
-              icon: Icon(Icons.fitness_center),
-              onPressed: () {},
-            ),
-            IconButton(
-              icon: Icon(Icons.view_list),
-              onPressed: () {
-                Navigator.pushNamed(context, '/misRutinas');
-              },
-            ),
-            IconButton(
-              icon: Icon(Icons.exit_to_app),
-              onPressed: () {},
-            ),
-          ],
-        ),
-      ),
     );
   }
 }

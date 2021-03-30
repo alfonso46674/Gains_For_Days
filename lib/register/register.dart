@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_integrador/utils/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Register extends StatefulWidget {
   Register({Key key}) : super(key: key);
@@ -10,6 +11,9 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   bool _checked = false;
+  var _nameController;
+  var _emailController;
+  var _passwordController;
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +42,7 @@ class _RegisterState extends State<Register> {
               style: TextStyle(color: Colors.white),
             ),
             TextField(
+              controller: _nameController,
               style: TextStyle(height: 0.5),
               decoration: InputDecoration(
                   filled: true, labelText: 'Username', fillColor: Colors.white),
@@ -49,6 +54,7 @@ class _RegisterState extends State<Register> {
               style: TextStyle(color: Colors.white),
             ),
             TextField(
+              controller: _emailController,
               style: TextStyle(height: 0.5),
               decoration: InputDecoration(
                   filled: true, labelText: 'Email', fillColor: Colors.white),
@@ -65,6 +71,7 @@ class _RegisterState extends State<Register> {
               style: TextStyle(color: Colors.white),
             ),
             TextField(
+              controller: _passwordController,
               style: TextStyle(color: Colors.white, height: 0.5),
               decoration: InputDecoration(
                 filled: true,
@@ -113,7 +120,7 @@ class _RegisterState extends State<Register> {
                   style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () {
-                  Navigator.of(context).pushNamed('/home');
+                  Navigator.of(context).pushNamed('/login');
                 },
               ),
             ),

@@ -3,13 +3,15 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
-import 'package:proyecto_integrador/models/exercise.dart';
+import 'package:hive/hive.dart';
 import 'package:proyecto_integrador/repositories/exercise_repository.dart';
 
 part 'ejercicios_event.dart';
 part 'ejercicios_state.dart';
 
 class EjerciciosBloc extends Bloc<EjerciciosEvent, EjerciciosState> {
+
+  Box _appDataBox = Hive.box('AppData');
   
   final ExerciseRepository repositorioEjercicios;
   
@@ -35,11 +37,10 @@ class EjerciciosBloc extends Bloc<EjerciciosEvent, EjerciciosState> {
       yield EjerciciosCargandoState();
       //intentar hacer el fetch para bajarlos
       try{
-        List<dynamic> ejercicios = await repositorioEjercicios.fetchExercises();
-        // print(ejercicios);
+        var ejercicios = _appDataBox.get('exercises',defaultValue:[]);
         yield EjerciciosCargadosState(exercisesList: ejercicios);
       }catch(e){
-        print(e);
+        print('Error: ${e}');
         yield EjerciciosErrorState();
       }
     }

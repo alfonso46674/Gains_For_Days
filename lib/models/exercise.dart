@@ -1,11 +1,20 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
+import 'package:hive/hive.dart';
 
+part 'exercise.g.dart';
+
+@HiveType(typeId: 1, adapterName: 'ExerciseAdapter')
 class Exercise extends Equatable {
+  @HiveField(0)
   final int id;
+  @HiveField(1)
   final String name;
+  @HiveField(2)
   final int category;
+  @HiveField(3)
   final List<dynamic> equipment;
+  @HiveField(4)
   final String description; 
 
   Exercise({
