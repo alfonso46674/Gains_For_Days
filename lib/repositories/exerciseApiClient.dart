@@ -19,9 +19,13 @@ class ExerciseApiClient {
     final response = await this.httpClient.get(Uri.parse(url));
     final List<dynamic> exerciseList = [];
 
+    print('_appDataBox.length: ${_appDataBox.length}');
     if (response.statusCode != 200) {
       throw new Exception('Error getting exercises');
     }
+
+    //if there is no data in the box, fill it 
+    else if(_appDataBox.length == 0){
 
     //Save the exercises from the response into an array using the json format function from the Exercise model
     final json = jsonDecode(response.body);
@@ -30,11 +34,10 @@ class ExerciseApiClient {
       exerciseList.add(Exercise.fromJson(json['results'][i]));
     }
 
-    print(_appDataBox.length);
-    await _appDataBox.clear();
-    print(_appDataBox.length);
+    // await _appDataBox.clear();
   
     await _appDataBox.put('exercises', exerciseList);
+    }
 
      }
 }
