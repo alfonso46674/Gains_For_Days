@@ -45,7 +45,7 @@ class MenuEjercicios extends StatelessWidget {
             child: Card(
               child: ListTile(
                 leading: Image.asset(
-                  'assets/dummy-square.png',
+                  'assets/categories/abs.png',
                   width: 64,
                   height: 64,
                 ),
@@ -68,7 +68,7 @@ class MenuEjercicios extends StatelessWidget {
             child: Card(
               child: ListTile(
                 leading: Image.asset(
-                  'assets/dummy-square.png',
+                  'assets/categories/pecs.png',
                   width: 64,
                   height: 64,
                 ),
@@ -91,7 +91,7 @@ class MenuEjercicios extends StatelessWidget {
             child: Card(
               child: ListTile(
                 leading: Image.asset(
-                  'assets/dummy-square.png',
+                  'assets/categories/arms.png',
                   width: 64,
                   height: 64,
                 ),
@@ -114,7 +114,7 @@ class MenuEjercicios extends StatelessWidget {
             child: Card(
               child: ListTile(
                 leading: Image.asset(
-                  'assets/dummy-square.png',
+                  'assets/categories/back.png',
                   width: 64,
                   height: 64,
                 ),
@@ -137,7 +137,7 @@ class MenuEjercicios extends StatelessWidget {
             child: Card(
               child: ListTile(
                 leading: Image.asset(
-                  'assets/dummy-square.png',
+                  'assets/categories/legs.png',
                   width: 64,
                   height: 64,
                 ),
@@ -160,7 +160,7 @@ class MenuEjercicios extends StatelessWidget {
             child: Card(
               child: ListTile(
                 leading: Image.asset(
-                  'assets/dummy-square.png',
+                  'assets/categories/calves.png',
                   width: 64,
                   height: 64,
                 ),
@@ -183,7 +183,7 @@ class MenuEjercicios extends StatelessWidget {
             child: Card(
               child: ListTile(
                 leading: Image.asset(
-                  'assets/dummy-square.png',
+                  'assets/categories/shoulders.png',
                   width: 64,
                   height: 64,
                 ),
@@ -206,7 +206,7 @@ class MenuEjercicios extends StatelessWidget {
             child: Card(
               child: ListTile(
                 leading: Image.asset(
-                  'assets/dummy-square.png',
+                  'assets/categories/allbody.png',
                   width: 64,
                   height: 64,
                 ),

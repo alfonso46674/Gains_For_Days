@@ -32,7 +32,7 @@ class _DetailsEjerciciosState extends State<DetailsEjercicios> {
             Container(
                 alignment: Alignment.center,
                 child: Image.asset(
-                  'assets/dummy-square.png',
+                  'assets/misc/dummy-square.png',
                   width: 300,
                   height: 300,
                 )),

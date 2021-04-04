@@ -22,7 +22,7 @@ class _ItemMenuEjerciciosState extends State<ItemMenuEjercicios> {
         child: Card(
             child: ListTile(
           leading: Image.asset(
-            'assets/dummy-square.png',
+            'assets/misc/dummy-square.png',
             width: 64,
             height: 64,
           ),
