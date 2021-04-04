@@ -9,8 +9,10 @@ import 'package:http/http.dart' as http;
 
 class ListaEjercicios extends StatefulWidget {
   final ExerciseCategory category;
+  final String title;
   const ListaEjercicios({
     this.category,
+    this.title,
     Key key,
   }) : super(key: key);
 
@@ -36,7 +38,7 @@ class _ListaEjerciciosState extends State<ListaEjercicios> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Ejercicios de abdomen"),
+          title: Text(widget.title),
           centerTitle: true,
           actions: [
             IconButton(

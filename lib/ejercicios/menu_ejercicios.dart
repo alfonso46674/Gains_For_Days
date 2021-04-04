@@ -57,6 +57,7 @@ class MenuEjercicios extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) => ListaEjercicios(
                     category: ExerciseCategory.ABS,
+                    title: 'Abdomen',
                   ),
                 ),
               );
@@ -79,6 +80,7 @@ class MenuEjercicios extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) => ListaEjercicios(
                     category: ExerciseCategory.CHEST,
+                    title: 'Pecho',
                   ),
                 ),
               );
@@ -101,6 +103,7 @@ class MenuEjercicios extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) => ListaEjercicios(
                     category: ExerciseCategory.ARMS,
+                    title: 'Brazos',
                   ),
                 ),
               );
@@ -123,6 +126,7 @@ class MenuEjercicios extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) => ListaEjercicios(
                     category: ExerciseCategory.BACK,
+                    title: 'Espalda',
                   ),
                 ),
               );
@@ -145,6 +149,7 @@ class MenuEjercicios extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) => ListaEjercicios(
                     category: ExerciseCategory.LEGS,
+                    title: 'Piernas',
                   ),
                 ),
               );
@@ -167,6 +172,7 @@ class MenuEjercicios extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) => ListaEjercicios(
                     category: ExerciseCategory.CALVES,
+                    title: 'Pantorrillas',
                   ),
                 ),
               );
@@ -187,8 +193,10 @@ class MenuEjercicios extends StatelessWidget {
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) =>
-                      ListaEjercicios(category: ExerciseCategory.SHOULDERS),
+                  builder: (context) => ListaEjercicios(
+                    category: ExerciseCategory.SHOULDERS,
+                    title: 'Hombros',
+                  ),
                 ),
               );
             },
@@ -208,8 +216,10 @@ class MenuEjercicios extends StatelessWidget {
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) =>
-                      ListaEjercicios(category: ExerciseCategory.EVERYTHING),
+                  builder: (context) => ListaEjercicios(
+                    category: ExerciseCategory.EVERYTHING,
+                    title: 'Todos los ejercicios',
+                  ),
                 ),
               );
             },
