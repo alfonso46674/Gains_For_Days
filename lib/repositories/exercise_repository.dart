@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
-import 'package:proyecto_integrador/models/exercise.dart';
 import 'package:proyecto_integrador/repositories/exerciseApiClient.dart';
 
 class ExerciseRepository {

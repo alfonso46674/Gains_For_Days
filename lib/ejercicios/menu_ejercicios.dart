@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:proyecto_integrador/auth/bloc/auth_bloc.dart';
+import 'package:proyecto_integrador/ejercicios/lista_ejercicios.dart';
+import 'package:proyecto_integrador/repositories/enumerations.dart';
 import 'package:proyecto_integrador/restartWidget.dart';
 import 'item_ejercicios.dart';
 
@@ -29,7 +31,7 @@ class MenuEjercicios extends StatelessWidget {
                 );
               });
               Future.delayed(Duration(seconds: 1), () {
-              RestartWidget.restartApp(context);
+                RestartWidget.restartApp(context);
               });
             },
           ),
@@ -51,7 +53,13 @@ class MenuEjercicios extends StatelessWidget {
               ),
             ),
             onPressed: () {
-              Navigator.pushNamed(context, '/listaEjercicios');
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => ListaEjercicios(
+                    category: ExerciseCategory.ABS,
+                  ),
+                ),
+              );
             },
           ),
           //Pecho
@@ -67,7 +75,13 @@ class MenuEjercicios extends StatelessWidget {
               ),
             ),
             onPressed: () {
-              Navigator.pushNamed(context, '/listaEjercicios');
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => ListaEjercicios(
+                    category: ExerciseCategory.CHEST,
+                  ),
+                ),
+              );
             },
           ),
           //Brazos
@@ -83,7 +97,13 @@ class MenuEjercicios extends StatelessWidget {
               ),
             ),
             onPressed: () {
-              Navigator.pushNamed(context, '/listaEjercicios');
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => ListaEjercicios(
+                    category: ExerciseCategory.ARMS,
+                  ),
+                ),
+              );
             },
           ),
           //Espalda
@@ -99,7 +119,13 @@ class MenuEjercicios extends StatelessWidget {
               ),
             ),
             onPressed: () {
-              Navigator.pushNamed(context, '/listaEjercicios');
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => ListaEjercicios(
+                    category: ExerciseCategory.BACK,
+                  ),
+                ),
+              );
             },
           ),
           //Piernas
@@ -115,7 +141,13 @@ class MenuEjercicios extends StatelessWidget {
               ),
             ),
             onPressed: () {
-              Navigator.pushNamed(context, '/listaEjercicios');
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => ListaEjercicios(
+                    category: ExerciseCategory.LEGS,
+                  ),
+                ),
+              );
             },
           ),
           //Pantorrillas
@@ -131,7 +163,13 @@ class MenuEjercicios extends StatelessWidget {
               ),
             ),
             onPressed: () {
-              Navigator.pushNamed(context, '/listaEjercicios');
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => ListaEjercicios(
+                    category: ExerciseCategory.CALVES,
+                  ),
+                ),
+              );
             },
           ),
           //Hombros
@@ -147,7 +185,12 @@ class MenuEjercicios extends StatelessWidget {
               ),
             ),
             onPressed: () {
-              Navigator.pushNamed(context, '/listaEjercicios');
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) =>
+                      ListaEjercicios(category: ExerciseCategory.SHOULDERS),
+                ),
+              );
             },
           ),
           //Todos los ejercicios
@@ -163,7 +206,12 @@ class MenuEjercicios extends StatelessWidget {
               ),
             ),
             onPressed: () {
-              Navigator.pushNamed(context, '/listaEjercicios');
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) =>
+                      ListaEjercicios(category: ExerciseCategory.EVERYTHING),
+                ),
+              );
             },
           ),
         ],
