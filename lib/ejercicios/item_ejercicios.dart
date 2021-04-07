@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_integrador/ejercicios/details_ejercicios.dart';
 import 'package:proyecto_integrador/models/exercise.dart';
 
 class ItemMenuEjercicios extends StatefulWidget {
@@ -29,11 +30,12 @@ class _ItemMenuEjerciciosState extends State<ItemMenuEjercicios> {
           title: Text("${widget.ejercicio.name}"),
         )),
         onPressed: () {
-          if (ModalRoute.of(context).settings.name == "/listaEjercicios") {
-            Navigator.pushNamed(context, '/detailsEjercicios');
-          } else {
-            Navigator.pushNamed(context, '/listaEjercicios');
-          }
+          Navigator.of(context).push(
+            MaterialPageRoute(
+                builder: (context) => DetailsEjercicios(
+                      ejercicio: widget.ejercicio,
+                    )),
+          );
         },
       ),
     );

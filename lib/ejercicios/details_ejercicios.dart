@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:proyecto_integrador/models/exercise.dart';
 
 class DetailsEjercicios extends StatefulWidget {
-  DetailsEjercicios({Key key}) : super(key: key);
+  final Exercise ejercicio;
+  DetailsEjercicios({
+    @required this.ejercicio,
+    Key key,
+  }) : super(key: key);
 
   @override
   _DetailsEjerciciosState createState() => _DetailsEjerciciosState();
@@ -13,7 +19,7 @@ class _DetailsEjerciciosState extends State<DetailsEjercicios> {
     return Container(
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Ejercicios de abdomen 1"),
+          title: Text(widget.ejercicio.name),
           centerTitle: true,
           actions: [
             IconButton(
@@ -71,32 +77,33 @@ class _DetailsEjerciciosState extends State<DetailsEjercicios> {
                   child: Column(
                     children: [
                       Text(
-                        "Paso 1",
+                        "Description",
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      Text("El primer paso es...")
+                      // Used this dependency (flutter_html) since the description is stored within html tags
+                      Html(data: widget.ejercicio.description),
                     ],
                   ),
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      Text(
-                        "Paso 2",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      Text("El segundo paso es...")
-                    ],
-                  ),
-                ),
-              ),
-            )
+            // Padding(
+            //   padding: const EdgeInsets.all(16),
+            //   child: Card(
+            //     child: Padding(
+            //       padding: const EdgeInsets.all(8.0),
+            //       child: Column(
+            //         children: [
+            //           Text(
+            //             "Paso 2",
+            //             style: TextStyle(fontWeight: FontWeight.bold),
+            //           ),
+            //           Text("El segundo paso es...")
+            //         ],
+            //       ),
+            //     ),
+            //   ),
+            // )
           ],
         ),
       ),
