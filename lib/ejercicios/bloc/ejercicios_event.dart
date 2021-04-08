@@ -8,8 +8,9 @@ abstract class EjerciciosEvent extends Equatable {
 }
 
 class FetchEjerciciosEvent extends EjerciciosEvent{
-  const FetchEjerciciosEvent();
+  final ExerciseCategory category ;
+  const FetchEjerciciosEvent(@required this.category) : assert(category != null);
 
   @override
-  List<Object> get props => [];  
+  List<Object> get props => [category];  
 }

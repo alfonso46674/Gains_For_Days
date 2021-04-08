@@ -15,29 +15,64 @@ class ExerciseApiClient {
 
   //Return all of the exercises in english and with a limit of 200 exercises
   Future<void> fetchExercises() async {
-    final url = '$_baseUrl/exercise?language=2&limit=200';
-    final response = await this.httpClient.get(Uri.parse(url));
+    final urlExercises = '$_baseUrl/exercise?language=2&limit=500';
+    //make a petition to the exercises endpoint and store the exercises json
+    final responseExercises = await this.httpClient.get(Uri.parse(urlExercises));
     final List<dynamic> exerciseList = [];
 
+    //make a petition to the exercise images endpoint and store the images json
+    final urlImages = '$_baseUrl/exerciseimage/?is_main=True&limit=500';
+    final responseImages = await this.httpClient.get(Uri.parse(urlImages));
+
     print('_appDataBox.length: ${_appDataBox.length}');
-    if (response.statusCode != 200) {
+    await _appDataBox.clear();
+
+    if (responseExercises.statusCode != 200) {
       throw new Exception('Error getting exercises');
     }
+    //if there is no data in the box, fill it
+    else if (_appDataBox.length == 0) {
+      //Save the exercises from the response into an array using the json format function from the Exercise model
+      final exercisesJson = jsonDecode(responseExercises.body);
+      //save the images from the responseImages; Decode the json and transform it into a usable object
+      final imagesJson = jsonDecode(responseImages.body);
 
-    //if there is no data in the box, fill it 
-    else if(_appDataBox.length == 0){
+      //print(json[keys])
+      for (int i = 0; i < exercisesJson['results'].length; i++) {
+        //filter out exercises with empty lists for main muscles or equipment
+        if (_areParametersEmpty(i, exercisesJson)) {
 
-    //Save the exercises from the response into an array using the json format function from the Exercise model
-    final json = jsonDecode(response.body);
-    //print(json[keys])
-    for (int i = 0; i < json['results'].length; i++) {
-      exerciseList.add(Exercise.fromJson(json['results'][i]));
+          //obtain the image for the exercise given its id
+          var imageUrl = _findExerciseImage(exercisesJson['results'][i]['id'], imagesJson);
+          //Parse the exercise into an Exercise object and save it in the list
+          exerciseList.add(Exercise.fromJson(exercisesJson['results'][i], imageUrl));
+        }
+      }
+
+      // await _appDataBox.clear();
+
+      // Save the exercise list in hive
+      await _appDataBox.put('exercises', exerciseList);
     }
+  }
+}
 
-    // await _appDataBox.clear();
-  
-    await _appDataBox.put('exercises', exerciseList);
+//filter out exercises if the main muscle or equipment list are empty
+bool _areParametersEmpty(int index, var json ){
+         bool mainMusclesEmpty = json['results'][index]['muscles'].length == 0;
+        bool equipmentEmpty = json['results'][index]['equipment'].length == 0;
+
+        if(mainMusclesEmpty  || equipmentEmpty) return false;
+        else return true;
+}
+
+//Given an exerciseId, it searches in imagesJson if there exists an object where its property 'image' contains the exerciseId
+//If so, it then returns the image url, otherwise returns null
+String _findExerciseImage(int exerciseId, var imagesJson){
+  for(var i = 0; i < imagesJson['results'].length; i++){
+    if(imagesJson['results'][i]['image'].contains(exerciseId.toString())){
+      return imagesJson['results'][i]['image'];
     }
-
-     }
+  }
+  return null;
 }
