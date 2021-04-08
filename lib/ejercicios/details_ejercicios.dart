@@ -37,13 +37,29 @@ class _DetailsEjerciciosState extends State<DetailsEjercicios> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Container(
-                alignment: Alignment.center,
-                child: Image.asset(
-                  'assets/misc/dummy-square.png',
-                  width: 300,
-                  height: 300,
-                )),
+             //if the exercice's imageUrl is not null, display said image, otherwise display stock photo
+            Builder(
+              builder: (context) {
+                final condition = widget.ejercicio.imageUrl != null;
+                return condition
+                    ? Container(
+                        alignment: Alignment.center,
+                        child: Image.network(
+                          widget.ejercicio.imageUrl,
+                          width: 300,
+                          height: 300,
+                        ),
+                      )
+                    : Container(
+                        alignment: Alignment.center,
+                        child: Image.asset(
+                          'assets/misc/dummy-square.png',
+                          width: 300,
+                          height: 300,
+                        ),
+                      );
+              },
+            ),
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: Card(
@@ -80,7 +96,9 @@ class _DetailsEjerciciosState extends State<DetailsEjercicios> {
                             //Show none when the secondary muscle list is empty, otherwise show all the secondary muscles with a listview
                             Builder(
                               builder: (context) {
-                                final condition = widget.ejercicio.secondaryMuscles.length == 0;
+                                final condition =
+                                    widget.ejercicio.secondaryMuscles.length ==
+                                        0;
 
                                 return condition
                                     ? Chip(
@@ -100,7 +118,6 @@ class _DetailsEjerciciosState extends State<DetailsEjercicios> {
                                           },
                                         ),
                                       );
-                                     
                               },
                             ),
                           ],

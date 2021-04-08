@@ -20,6 +20,8 @@ class Exercise extends Equatable {
   final List<dynamic> mainMuscles;
   @HiveField(6)
   final List<dynamic> secondaryMuscles;
+  @HiveField(7)
+  final String imageUrl;
   
 
   Exercise({
@@ -30,13 +32,14 @@ class Exercise extends Equatable {
     @required this.description,
     @required this.mainMuscles,
     @required this.secondaryMuscles,
+    @required this.imageUrl,
   });
 
   @override
-  List<Object> get props => [id, name, category, equipment, description, mainMuscles, secondaryMuscles];
+  List<Object> get props => [id, name, category, equipment, description, mainMuscles, secondaryMuscles, imageUrl];
 
   //receives a json and returns an exercise object
-   static Exercise fromJson(dynamic json){
+   static Exercise fromJson(dynamic json, String imageUrl){
     return Exercise(
       id: json["id"],
       name : json["name"],
@@ -44,7 +47,8 @@ class Exercise extends Equatable {
       equipment: json["equipment"],
       description: json["description"],
       mainMuscles: json["muscles"],
-      secondaryMuscles: json["muscles_secondary"]
+      secondaryMuscles: json["muscles_secondary"],
+      imageUrl: imageUrl,
     );
 
     // @override

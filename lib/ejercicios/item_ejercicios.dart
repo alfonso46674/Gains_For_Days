@@ -22,11 +22,22 @@ class _ItemMenuEjerciciosState extends State<ItemMenuEjercicios> {
       child: TextButton(
         child: Card(
             child: ListTile(
-          leading: Image.asset(
+              //if the exercice's imageUrl is not null, display said image, otherwise display stock photo
+          leading: Builder(builder: (context){
+            final condition = widget.ejercicio.imageUrl != null;
+            return condition
+            ? Image.network(
+            widget.ejercicio.imageUrl,
+            width: 50,
+            height: 50,
+          )
+          :
+          Image.asset(
             'assets/misc/dummy-square.png',
-            width: 64,
-            height: 64,
-          ),
+            width: 50,
+            height: 50,
+          );
+          }),
           title: Text("${widget.ejercicio.name}"),
         )),
         onPressed: () {
