@@ -44,27 +44,55 @@ class _DetailsEjerciciosState extends State<DetailsEjercicios> {
                   height: 300,
                 )),
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(12.0),
               child: Card(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: [
-                      Row(
-                        children: [
-                          Text("Musculo principal: "),
-                          Chip(label: Text("Abdomen"))
-                        ],
+                                           Container(
+                        height: 35,
+                        child: Row(
+                          children: [
+                            Text("Musculo principal: "),
+                            Flexible(
+                              fit: FlexFit.tight,
+                              child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  shrinkWrap: true,
+                                  itemCount: widget.ejercicio.mainMuscles.length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return _getMainMuscles(index, widget.ejercicio);
+                                  }),
+                            )
+                          ],
+                        ),
                       ),
-                      Row(
-                        children: [Text("Musculos secundarios: "), Text("n/a")],
+                      Container(
+                        height: 35,
+                        child: Row(
+                          children: [
+                            Text("Musculos secundarios: "),
+                            Flexible(
+                              fit: FlexFit.tight,
+                              child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  shrinkWrap: true,
+                                  itemCount: widget.ejercicio.secondaryMuscles.length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return _getSecondaryMuscles(index, widget.ejercicio);
+                                  }),
+                            )
+                          ],
+                        ),
                       ),
                       Container(
                         height: 35,
                         child: Row(
                           children: [
                             Text("Materiales: "),
-                            // Chip(label: Text("Pelota ejercicio"))
                             Flexible(
                               fit: FlexFit.tight,
                               child: ListView.builder(
@@ -85,7 +113,7 @@ class _DetailsEjerciciosState extends State<DetailsEjercicios> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(8),
               child: Card(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -122,5 +150,35 @@ Widget _getEquipment(int indexEquipment, Exercise ejercicio) {
   }
   return Chip(
     label: Text(equipmentName),
+  );
+}
+Widget _getSecondaryMuscles(int indexMuscles, Exercise ejercicio) {
+  var secondaryMuscleName = '';
+  //using the muscle list in enumerations.dart
+  for (var map in musclesList) {
+    if (map.containsKey('id')) {
+      if (map['id'] == ejercicio.secondaryMuscles[indexMuscles]) {
+        // print(map['name']);
+        secondaryMuscleName = map['name'];
+      }
+    }
+  }
+  return Chip(
+    label: Text(secondaryMuscleName),
+  );
+}
+Widget _getMainMuscles(int indexMuscles, Exercise ejercicio) {
+  var mainMuscleName = '';
+  //using the muscle list in enumerations.dart
+  for (var map in musclesList) {
+    if (map.containsKey('id')) {
+      if (map['id'] == ejercicio.mainMuscles[indexMuscles]) {
+        // print(map['name']);
+        mainMuscleName = map['name'];
+      }
+    }
+  }
+  return Chip(
+    label: Text(mainMuscleName),
   );
 }
