@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:proyecto_integrador/models/exercise.dart';
+import 'package:proyecto_integrador/repositories/enumerations.dart';
 
 class DetailsEjercicios extends StatefulWidget {
   final Exercise ejercicio;
   DetailsEjercicios({
-    @required this.ejercicio,
+    this.ejercicio,
     Key key,
   }) : super(key: key);
 
@@ -58,11 +59,25 @@ class _DetailsEjerciciosState extends State<DetailsEjercicios> {
                       Row(
                         children: [Text("Musculos secundarios: "), Text("n/a")],
                       ),
-                      Row(
-                        children: [
-                          Text("Materiales: "),
-                          Chip(label: Text("Pelota ejercicio"))
-                        ],
+                      Container(
+                        height: 35,
+                        child: Row(
+                          children: [
+                            Text("Materiales: "),
+                            // Chip(label: Text("Pelota ejercicio"))
+                            Flexible(
+                              fit: FlexFit.tight,
+                              child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  shrinkWrap: true,
+                                  itemCount: widget.ejercicio.equipment.length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return _getEquipment(index, widget.ejercicio);
+                                  }),
+                            )
+                          ],
+                        ),
                       )
                     ],
                   ),
@@ -87,26 +102,25 @@ class _DetailsEjerciciosState extends State<DetailsEjercicios> {
                 ),
               ),
             ),
-            // Padding(
-            //   padding: const EdgeInsets.all(16),
-            //   child: Card(
-            //     child: Padding(
-            //       padding: const EdgeInsets.all(8.0),
-            //       child: Column(
-            //         children: [
-            //           Text(
-            //             "Paso 2",
-            //             style: TextStyle(fontWeight: FontWeight.bold),
-            //           ),
-            //           Text("El segundo paso es...")
-            //         ],
-            //       ),
-            //     ),
-            //   ),
-            // )
           ],
         ),
       ),
     );
   }
+}
+
+Widget _getEquipment(int indexEquipment, Exercise ejercicio) {
+  var equipmentName = '';
+  //using the equipment list in enumerations.dart
+  for (var map in equipmentList) {
+    if (map.containsKey('id')) {
+      if (map['id'] == ejercicio.equipment[indexEquipment]) {
+        // print(map['name']);
+        equipmentName = map['name'];
+      }
+    }
+  }
+  return Chip(
+    label: Text(equipmentName),
+  );
 }
