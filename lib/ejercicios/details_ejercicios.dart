@@ -27,6 +27,7 @@ class _DetailsEjerciciosState extends State<DetailsEjercicios> {
               icon: Icon(Icons.edit),
               onPressed: () {
                 //TODO: Página de Registro de uso
+                print(widget.ejercicio);
                 // Navigator.pushNamed(context, '/registroUso');
               },
             ),
@@ -50,7 +51,7 @@ class _DetailsEjerciciosState extends State<DetailsEjercicios> {
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: [
-                                           Container(
+                      Container(
                         height: 35,
                         child: Row(
                           children: [
@@ -60,10 +61,12 @@ class _DetailsEjerciciosState extends State<DetailsEjercicios> {
                               child: ListView.builder(
                                   scrollDirection: Axis.horizontal,
                                   shrinkWrap: true,
-                                  itemCount: widget.ejercicio.mainMuscles.length,
+                                  itemCount:
+                                      widget.ejercicio.mainMuscles.length,
                                   itemBuilder:
                                       (BuildContext context, int index) {
-                                    return _getMainMuscles(index, widget.ejercicio);
+                                    return _getMainMuscles(
+                                        index, widget.ejercicio);
                                   }),
                             )
                           ],
@@ -74,17 +77,32 @@ class _DetailsEjerciciosState extends State<DetailsEjercicios> {
                         child: Row(
                           children: [
                             Text("Musculos secundarios: "),
-                            Flexible(
-                              fit: FlexFit.tight,
-                              child: ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  shrinkWrap: true,
-                                  itemCount: widget.ejercicio.secondaryMuscles.length,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    return _getSecondaryMuscles(index, widget.ejercicio);
-                                  }),
-                            )
+                            //Show none when the secondary muscle list is empty, otherwise show all the secondary muscles with a listview
+                            Builder(
+                              builder: (context) {
+                                final condition = widget.ejercicio.secondaryMuscles.length == 0;
+
+                                return condition
+                                    ? Chip(
+                                        label: Text('None'),
+                                      )
+                                    : Flexible(
+                                        fit: FlexFit.tight,
+                                        child: ListView.builder(
+                                          scrollDirection: Axis.horizontal,
+                                          shrinkWrap: true,
+                                          itemCount: widget.ejercicio
+                                              .secondaryMuscles.length,
+                                          itemBuilder: (BuildContext context,
+                                              int index) {
+                                            return _getSecondaryMuscles(
+                                                index, widget.ejercicio);
+                                          },
+                                        ),
+                                      );
+                                     
+                              },
+                            ),
                           ],
                         ),
                       ),
@@ -101,7 +119,8 @@ class _DetailsEjerciciosState extends State<DetailsEjercicios> {
                                   itemCount: widget.ejercicio.equipment.length,
                                   itemBuilder:
                                       (BuildContext context, int index) {
-                                    return _getEquipment(index, widget.ejercicio);
+                                    return _getEquipment(
+                                        index, widget.ejercicio);
                                   }),
                             )
                           ],
@@ -152,6 +171,7 @@ Widget _getEquipment(int indexEquipment, Exercise ejercicio) {
     label: Text(equipmentName),
   );
 }
+
 Widget _getSecondaryMuscles(int indexMuscles, Exercise ejercicio) {
   var secondaryMuscleName = '';
   //using the muscle list in enumerations.dart
@@ -167,6 +187,7 @@ Widget _getSecondaryMuscles(int indexMuscles, Exercise ejercicio) {
     label: Text(secondaryMuscleName),
   );
 }
+
 Widget _getMainMuscles(int indexMuscles, Exercise ejercicio) {
   var mainMuscleName = '';
   //using the muscle list in enumerations.dart
