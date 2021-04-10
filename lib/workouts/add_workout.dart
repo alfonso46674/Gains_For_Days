@@ -14,7 +14,7 @@ class _AddWorkoutState extends State<AddWorkout> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Nueva Rutina"),
+        title: Text("New workout"),
       ),
       body: Column(
         mainAxisSize: MainAxisSize.min,
@@ -26,7 +26,7 @@ class _AddWorkoutState extends State<AddWorkout> {
               decoration: InputDecoration(
                   suffixIcon: Icon(Icons.search),
                   border: OutlineInputBorder(),
-                  labelText: 'Buscar'),
+                  labelText: 'Search'),
             ),
           ),
           //Texto de materiales
@@ -40,7 +40,7 @@ class _AddWorkoutState extends State<AddWorkout> {
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                "Materiales",
+                "Equipment",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
@@ -117,7 +117,7 @@ class _AddWorkoutState extends State<AddWorkout> {
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                "Músculos",
+                "Muscles",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
@@ -195,7 +195,7 @@ class _AddWorkoutState extends State<AddWorkout> {
               decoration: InputDecoration(
                   suffixIcon: Icon(Icons.search),
                   border: OutlineInputBorder(),
-                  labelText: 'Nombre rutina'),
+                  labelText: 'Name of workout'),
             ),
           ),
 
@@ -210,7 +210,7 @@ class _AddWorkoutState extends State<AddWorkout> {
                       borderRadius: BorderRadius.circular(10.0),
                     )),
                 child: Text(
-                  'CREAR',
+                  'ADD',
                   style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () {

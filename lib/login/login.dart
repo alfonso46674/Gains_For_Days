@@ -32,14 +32,14 @@ class _LoginState extends State<Login> {
             //INPUTS PARA USUARIO Y CONTRASEÑA
             //Username
             Text(
-              'Nombre completo :',
+              'Full name :',
               style: TextStyle(color: Colors.white),
             ),
             TextField(
               style: TextStyle(height: 0.5),
               decoration: InputDecoration(
                   filled: true,
-                  labelText: 'Nombre completo',
+                  labelText: 'Full name',
                   fillColor: Colors.transparent),
             ),
             //Espaciado
@@ -79,7 +79,7 @@ class _LoginState extends State<Login> {
                       borderRadius: BorderRadius.circular(10.0),
                     )),
                 child: Text(
-                  'ENTRAR',
+                  'SIGN IN',
                   style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () {

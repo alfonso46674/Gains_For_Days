@@ -38,7 +38,7 @@ class _RegisterState extends State<Register> {
             //INPUTS PARA USUARIO Y CONTRASEÑA
             //Username
             Text(
-              'Nombre completo:',
+              'Full name:',
               style: TextStyle(color: Colors.white),
             ),
             TextField(
@@ -91,7 +91,7 @@ class _RegisterState extends State<Register> {
                 onChanged: (newValue) {},
                 // activeColor: Color.fromARGB(255, 0xBC, 0xB0, 0xA1),
                 title: Text(
-                  "ACEPTO LOS TÉRMINOS Y CONDICIONES DE USO",
+                  "I ACCEPT THE TERMS AND CONDITIONS OF USE",
                   style: TextStyle(
                     fontSize: 12,
                     color: Colors.white,
@@ -116,7 +116,7 @@ class _RegisterState extends State<Register> {
                           color: Color.fromARGB(255, 0xBC, 0xB0, 0xA1))),
                 ),
                 child: Text(
-                  'REGISTRATE',
+                  'SIGN UP',
                   style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () {

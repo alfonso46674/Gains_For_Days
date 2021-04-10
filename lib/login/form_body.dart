@@ -27,7 +27,7 @@ class FormBody extends StatelessWidget {
               Expanded(
                 child: GoogleAuthButton(
                   onPressed: () => onGoogleLoginTap(true),
-                  text: "Iniciar con Google",
+                  text: "Sign in with Google",
                   borderRadius: 18.0,
                   darkMode: false,
                 ),
@@ -39,8 +39,8 @@ class FormBody extends StatelessWidget {
         Container(
           margin: EdgeInsets.symmetric(horizontal: 32),
           child: Text(
-            "Al acceder se aceptan los terminos y condiciones asi como la politica de privacidad, "
-            "mismos que pueden ser consultados en mipaginaweb.com.mx o en los ajustes de la aplicacion.",
+            "By accessing the terms and conditions as well as the privacy policy are accepted, "
+            "which can be consulted at mipaginaweb.com.mx or in the application settings.",
             textAlign: TextAlign.justify,
             style: TextStyle(fontSize: 10),
           ),
@@ -68,7 +68,7 @@ class FormBody extends StatelessWidget {
                       SizedBox(width: 14),
                       Expanded(
                         child: Text(
-                          "Usuario anonimo",
+                          "Anonymous user",
                           style: TextStyle(
                             color: Colors.grey[200],
                             fontSize: 18,

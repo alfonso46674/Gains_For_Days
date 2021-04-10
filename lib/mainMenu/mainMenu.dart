@@ -35,11 +35,11 @@ class _MainMenuState extends State<MainMenu> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.fitness_center),
-            label: "Ejercicios"
+            label: "Exercises"
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.view_list),
-            label: "Rutinas"
+            label: "Workouts"
           )
         ],
       ),

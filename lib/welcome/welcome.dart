@@ -61,7 +61,7 @@ class _WelcomeState extends State<Welcome> {
                   ),
                 ),
                 child: Text(
-                  'REGISTRATE',
+                  'SIGN UP',
                   style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () {
@@ -83,7 +83,7 @@ class _WelcomeState extends State<Welcome> {
                   ),
                 ),
                 child: Text(
-                  'INGRESA',
+                  'SIGN IN',
                   style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () {

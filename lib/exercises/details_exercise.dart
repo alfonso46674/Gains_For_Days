@@ -71,7 +71,7 @@ class _DetailsExerciseState extends State<DetailsExercise> {
                         height: 35,
                         child: Row(
                           children: [
-                            Text("Musculo principal: "),
+                            Text("Main muscle: "),
                             Flexible(
                               fit: FlexFit.tight,
                               child: ListView.builder(
@@ -92,7 +92,7 @@ class _DetailsExerciseState extends State<DetailsExercise> {
                         height: 35,
                         child: Row(
                           children: [
-                            Text("Musculos secundarios: "),
+                            Text("Secondary muscles: "),
                             //Show none when the secondary muscle list is empty, otherwise show all the secondary muscles with a listview
                             Builder(
                               builder: (context) {
@@ -127,7 +127,7 @@ class _DetailsExerciseState extends State<DetailsExercise> {
                         height: 35,
                         child: Row(
                           children: [
-                            Text("Materiales: "),
+                            Text("Equipment: "),
                             Flexible(
                               fit: FlexFit.tight,
                               child: ListView.builder(

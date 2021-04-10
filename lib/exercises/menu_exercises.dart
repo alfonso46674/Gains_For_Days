@@ -13,7 +13,7 @@ class MenuExercises extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Ejercicios"),
+        title: Text("Exercises"),
         centerTitle: true,
         actions: [
           IconButton(
@@ -49,7 +49,7 @@ class MenuExercises extends StatelessWidget {
                   width: 64,
                   height: 64,
                 ),
-                title: Text("Abdomen"),
+                title: Text("Abdominals"),
               ),
             ),
             onPressed: () {
@@ -57,7 +57,7 @@ class MenuExercises extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) => ListExercises(
                     category: ExerciseCategory.ABS,
-                    title: 'Abdomen',
+                    title: 'Abdominals',
                   ),
                 ),
               );
@@ -72,7 +72,7 @@ class MenuExercises extends StatelessWidget {
                   width: 64,
                   height: 64,
                 ),
-                title: Text("Pecho"),
+                title: Text("Chest"),
               ),
             ),
             onPressed: () {
@@ -80,7 +80,7 @@ class MenuExercises extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) => ListExercises(
                     category: ExerciseCategory.CHEST,
-                    title: 'Pecho',
+                    title: 'Chest',
                   ),
                 ),
               );
@@ -95,7 +95,7 @@ class MenuExercises extends StatelessWidget {
                   width: 64,
                   height: 64,
                 ),
-                title: Text("Brazos"),
+                title: Text("Arms"),
               ),
             ),
             onPressed: () {
@@ -103,7 +103,7 @@ class MenuExercises extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) => ListExercises(
                     category: ExerciseCategory.ARMS,
-                    title: 'Brazos',
+                    title: 'Arms',
                   ),
                 ),
               );
@@ -118,7 +118,7 @@ class MenuExercises extends StatelessWidget {
                   width: 64,
                   height: 64,
                 ),
-                title: Text("Espalda"),
+                title: Text("Back"),
               ),
             ),
             onPressed: () {
@@ -126,7 +126,7 @@ class MenuExercises extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) => ListExercises(
                     category: ExerciseCategory.BACK,
-                    title: 'Espalda',
+                    title: 'Back',
                   ),
                 ),
               );
@@ -141,7 +141,7 @@ class MenuExercises extends StatelessWidget {
                   width: 64,
                   height: 64,
                 ),
-                title: Text("Piernas"),
+                title: Text("Legs"),
               ),
             ),
             onPressed: () {
@@ -149,7 +149,7 @@ class MenuExercises extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) => ListExercises(
                     category: ExerciseCategory.LEGS,
-                    title: 'Piernas',
+                    title: 'Legs',
                   ),
                 ),
               );
@@ -164,7 +164,7 @@ class MenuExercises extends StatelessWidget {
                   width: 64,
                   height: 64,
                 ),
-                title: Text("Pantorrillas"),
+                title: Text("Calves"),
               ),
             ),
             onPressed: () {
@@ -172,7 +172,7 @@ class MenuExercises extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) => ListExercises(
                     category: ExerciseCategory.CALVES,
-                    title: 'Pantorrillas',
+                    title: 'Calves',
                   ),
                 ),
               );
@@ -187,7 +187,7 @@ class MenuExercises extends StatelessWidget {
                   width: 64,
                   height: 64,
                 ),
-                title: Text("Hombros"),
+                title: Text("Shoulders"),
               ),
             ),
             onPressed: () {
@@ -195,7 +195,7 @@ class MenuExercises extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) => ListExercises(
                     category: ExerciseCategory.SHOULDERS,
-                    title: 'Hombros',
+                    title: 'Shoulders',
                   ),
                 ),
               );
@@ -210,7 +210,7 @@ class MenuExercises extends StatelessWidget {
                   width: 64,
                   height: 64,
                 ),
-                title: Text("Todos los ejercicios"),
+                title: Text("Complete exercise list"),
               ),
             ),
             onPressed: () {
@@ -218,7 +218,7 @@ class MenuExercises extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) => ListExercises(
                     category: ExerciseCategory.EVERYTHING,
-                    title: 'Todos los ejercicios',
+                    title: 'Complete exercise list',
                   ),
                 ),
               );

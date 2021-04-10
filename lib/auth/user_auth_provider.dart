@@ -39,7 +39,7 @@ class UserAuthProvider {
     final anonymousUser = (await _auth.signInAnonymously()).user;
     //Mostrar el nombre del usuario como los digitos del 0 al 5 de su id, y con invitado al final
     await anonymousUser.updateProfile(
-        displayName: "${anonymousUser.uid.substring(0, 5)}_Invitado");
+        displayName: "${anonymousUser.uid.substring(0, 5)}_Guest");
 
     //recargar el usuario
     await anonymousUser.reload();

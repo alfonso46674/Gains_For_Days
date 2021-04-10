@@ -12,7 +12,7 @@ class _SearchExerciseState extends State<SearchExercise> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Busqueda ejercicios"),
+        title: Text("Search exercise"),
       ),
       body: Column(
         mainAxisSize: MainAxisSize.min,
@@ -24,7 +24,7 @@ class _SearchExerciseState extends State<SearchExercise> {
               decoration: InputDecoration(
                   suffixIcon: Icon(Icons.search),
                   border: OutlineInputBorder(),
-                  labelText: 'Buscar'),
+                  labelText: 'Search'),
             ),
           ),
           //Texto de materiales
@@ -38,7 +38,7 @@ class _SearchExerciseState extends State<SearchExercise> {
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                "Materiales",
+                "Equipment",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
@@ -114,7 +114,7 @@ class _SearchExerciseState extends State<SearchExercise> {
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                "Músculos",
+                "Muscles",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                 ),

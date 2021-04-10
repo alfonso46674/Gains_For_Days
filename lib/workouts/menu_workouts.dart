@@ -14,7 +14,7 @@ class _MenuWorkoutsState extends State<MenuWorkouts> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Mis rutinas"),
+        title: Text("My workouts"),
         centerTitle: true,
       ),
       body: Column(
@@ -44,7 +44,7 @@ class _MenuWorkoutsState extends State<MenuWorkouts> {
                       borderRadius: BorderRadius.circular(10.0),
                     )),
                 child: Text(
-                  'CREAR RUTINA',
+                  'ADD WORKOUT',
                   style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () {
