@@ -3,18 +3,18 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:proyecto_integrador/models/exercise.dart';
 import 'package:proyecto_integrador/repositories/enumerations.dart';
 
-class DetailsEjercicios extends StatefulWidget {
+class DetailsExercise extends StatefulWidget {
   final Exercise ejercicio;
-  DetailsEjercicios({
+  DetailsExercise({
     this.ejercicio,
     Key key,
   }) : super(key: key);
 
   @override
-  _DetailsEjerciciosState createState() => _DetailsEjerciciosState();
+  _DetailsExerciseState createState() => _DetailsExerciseState();
 }
 
-class _DetailsEjerciciosState extends State<DetailsEjercicios> {
+class _DetailsExerciseState extends State<DetailsExercise> {
   @override
   Widget build(BuildContext context) {
     return Container(

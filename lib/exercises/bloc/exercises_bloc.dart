@@ -7,8 +7,8 @@ import 'package:hive/hive.dart';
 import 'package:proyecto_integrador/repositories/enumerations.dart';
 import 'package:proyecto_integrador/repositories/exercise_repository.dart';
 
-part 'ejercicios_event.dart';
-part 'ejercicios_state.dart';
+part 'exercises_event.dart';
+part 'exercises_state.dart';
 
 class EjerciciosBloc extends Bloc<EjerciciosEvent, EjerciciosState> {
   Box _appDataBox = Hive.box('AppData');

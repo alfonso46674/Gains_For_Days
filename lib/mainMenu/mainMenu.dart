@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto_integrador/ejercicios/menu_ejercicios.dart';
-import 'package:proyecto_integrador/rutinas/mis_rutinas.dart';
+import 'package:proyecto_integrador/exercises/menu_exercises.dart';
+import 'package:proyecto_integrador/workouts/menu_workouts.dart';
 
 class MainMenu extends StatefulWidget {
   MainMenu({Key key}) : super(key: key);
@@ -12,8 +12,8 @@ class MainMenu extends StatefulWidget {
 class _MainMenuState extends State<MainMenu> {
   int _currentPageIndex = 0;
   final _pagesList = [
-    MenuEjercicios(),
-    MisRutinas(),
+    MenuExercises(),
+    MenuWorkouts(),
     
   ];
 

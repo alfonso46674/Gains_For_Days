@@ -6,20 +6,20 @@ import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'package:proyecto_integrador/auth/bloc/auth_bloc.dart';
-import 'package:proyecto_integrador/ejercicios/busqueda_ejercicios.dart';
-import 'package:proyecto_integrador/ejercicios/menu_ejercicios.dart';
+import 'package:proyecto_integrador/exercises/search_exercise.dart';
+import 'package:proyecto_integrador/exercises/menu_exercises.dart';
 import 'package:proyecto_integrador/login/login.dart';
 import 'package:proyecto_integrador/models/exercise.dart';
 import 'package:proyecto_integrador/register/register.dart';
 import 'package:proyecto_integrador/restartWidget.dart';
-import 'package:proyecto_integrador/rutinas/crear_rutina.dart';
-import 'package:proyecto_integrador/rutinas/mis_rutinas.dart';
+import 'package:proyecto_integrador/workouts/add_workout.dart';
+import 'package:proyecto_integrador/workouts/menu_workouts.dart';
 import 'package:proyecto_integrador/splash/splash.dart';
 import 'package:proyecto_integrador/utils/constants.dart';
 import 'package:proyecto_integrador/welcome/welcome.dart';
 
-import 'ejercicios/details_ejercicios.dart';
-import 'ejercicios/lista_ejercicios.dart';
+import 'exercises/details_exercise.dart';
+import 'exercises/list_exercises.dart';
 import 'mainMenu/mainMenu.dart';
 
 void main() async {
@@ -61,12 +61,12 @@ class MyApp extends StatelessWidget {
         '/login': (context) => Login(),
         '/register': (context) => Register(),
         '/mainMenu': (context) => MainMenu(),
-        '/menuEjercicios': (context) => MenuEjercicios(),
-        '/listaEjercicios': (context) => ListaEjercicios(),
-        '/detailsEjercicios': (context) => DetailsEjercicios(),
-        '/busquedaEjercicios': (context) => BusquedaEjercicios(),
-        '/misRutinas': (context) => MisRutinas(),
-        '/crearRutina': (context) => CrearRutina(),
+        '/menuExercises': (context) => MenuExercises(),
+        '/listExercises': (context) => ListExercises(),
+        '/detailsExercise': (context) => DetailsExercise(),
+        '/searchExercise': (context) => SearchExercise(),
+        '/myWorkouts': (context) => MenuWorkouts(),
+        '/addWorkout': (context) => AddWorkout(),
       },
     );
   }

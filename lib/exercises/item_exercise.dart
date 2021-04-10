@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto_integrador/ejercicios/details_ejercicios.dart';
+import 'package:proyecto_integrador/exercises/details_exercise.dart';
 import 'package:proyecto_integrador/models/exercise.dart';
 
-class ItemMenuEjercicios extends StatefulWidget {
+class ItemExercise extends StatefulWidget {
   final Exercise ejercicio;
-  ItemMenuEjercicios({
+  ItemExercise({
     Key key,
     @required this.ejercicio,
   }) : super(key: key);
 
   @override
-  _ItemMenuEjerciciosState createState() => _ItemMenuEjerciciosState();
+  _ItemExerciseState createState() => _ItemExerciseState();
 }
 
-class _ItemMenuEjerciciosState extends State<ItemMenuEjercicios> {
+class _ItemExerciseState extends State<ItemExercise> {
   bool isNewRouteSameAsCurrent = false;
 
   @override
@@ -43,7 +43,7 @@ class _ItemMenuEjerciciosState extends State<ItemMenuEjercicios> {
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-                builder: (context) => DetailsEjercicios(
+                builder: (context) => DetailsExercise(
                       ejercicio: widget.ejercicio,
                     )),
           );

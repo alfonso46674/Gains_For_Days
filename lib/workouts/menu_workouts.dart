@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_integrador/utils/constants.dart'; 
 
-class MisRutinas extends StatefulWidget {
-  MisRutinas({Key key}) : super(key: key);
+class MenuWorkouts extends StatefulWidget {
+  MenuWorkouts({Key key}) : super(key: key);
 
   @override
-  _MisRutinasState createState() => _MisRutinasState();
+  _MenuWorkoutsState createState() => _MenuWorkoutsState();
 }
 
 //TODO: Hacer que las rutinas que aparecen salgan a partir de la BD y que se generen widgets GestureDetector dinamicamente
-class _MisRutinasState extends State<MisRutinas> {
+class _MenuWorkoutsState extends State<MenuWorkouts> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +48,7 @@ class _MisRutinasState extends State<MisRutinas> {
                   style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () {
-                  Navigator.of(context).pushNamed('/crearRutina');
+                  Navigator.of(context).pushNamed('/addWorkout');
                 },
               ),
             ),

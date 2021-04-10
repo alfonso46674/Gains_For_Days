@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class BusquedaEjercicios extends StatefulWidget {
-  BusquedaEjercicios({Key key}) : super(key: key);
+class SearchExercise extends StatefulWidget {
+  SearchExercise({Key key}) : super(key: key);
 
   @override
-  _BusquedaEjerciciosState createState() => _BusquedaEjerciciosState();
+  _SearchExerciseState createState() => _SearchExerciseState();
 }
 
-class _BusquedaEjerciciosState extends State<BusquedaEjercicios> {
+class _SearchExerciseState extends State<SearchExercise> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,7 +81,6 @@ class _BusquedaEjerciciosState extends State<BusquedaEjercicios> {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    //TODO: Usar FilterChips en lugar de InputChips
                     InputChip(
                       // avatar: CircleAvatar(
                       //   backgroundColor: Colors.grey.shade800,

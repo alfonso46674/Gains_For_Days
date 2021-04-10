@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:proyecto_integrador/utils/constants.dart'; 
 
 
-class CrearRutina extends StatefulWidget {
-  CrearRutina({Key key}) : super(key: key);
+class AddWorkout extends StatefulWidget {
+  AddWorkout({Key key}) : super(key: key);
 
   @override
-  _CrearRutinaState createState() => _CrearRutinaState();
+  _AddWorkoutState createState() => _AddWorkoutState();
 }
 
-class _CrearRutinaState extends State<CrearRutina> {
+class _AddWorkoutState extends State<AddWorkout> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

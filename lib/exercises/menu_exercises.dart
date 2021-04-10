@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:proyecto_integrador/auth/bloc/auth_bloc.dart';
-import 'package:proyecto_integrador/ejercicios/lista_ejercicios.dart';
+import 'package:proyecto_integrador/exercises/list_exercises.dart';
 import 'package:proyecto_integrador/repositories/enumerations.dart';
 import 'package:proyecto_integrador/restartWidget.dart';
-import 'item_ejercicios.dart';
+import 'item_exercise.dart';
 
-class MenuEjercicios extends StatelessWidget {
-  const MenuEjercicios({Key key}) : super(key: key);
+class MenuExercises extends StatelessWidget {
+  const MenuExercises({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class MenuEjercicios extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.search),
             onPressed: () {
-              Navigator.pushNamed(context, '/busquedaEjercicios');
+              Navigator.pushNamed(context, '/searchExercise');
             },
           ),
           IconButton(
@@ -55,7 +55,7 @@ class MenuEjercicios extends StatelessWidget {
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => ListaEjercicios(
+                  builder: (context) => ListExercises(
                     category: ExerciseCategory.ABS,
                     title: 'Abdomen',
                   ),
@@ -78,7 +78,7 @@ class MenuEjercicios extends StatelessWidget {
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => ListaEjercicios(
+                  builder: (context) => ListExercises(
                     category: ExerciseCategory.CHEST,
                     title: 'Pecho',
                   ),
@@ -101,7 +101,7 @@ class MenuEjercicios extends StatelessWidget {
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => ListaEjercicios(
+                  builder: (context) => ListExercises(
                     category: ExerciseCategory.ARMS,
                     title: 'Brazos',
                   ),
@@ -124,7 +124,7 @@ class MenuEjercicios extends StatelessWidget {
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => ListaEjercicios(
+                  builder: (context) => ListExercises(
                     category: ExerciseCategory.BACK,
                     title: 'Espalda',
                   ),
@@ -147,7 +147,7 @@ class MenuEjercicios extends StatelessWidget {
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => ListaEjercicios(
+                  builder: (context) => ListExercises(
                     category: ExerciseCategory.LEGS,
                     title: 'Piernas',
                   ),
@@ -170,7 +170,7 @@ class MenuEjercicios extends StatelessWidget {
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => ListaEjercicios(
+                  builder: (context) => ListExercises(
                     category: ExerciseCategory.CALVES,
                     title: 'Pantorrillas',
                   ),
@@ -193,7 +193,7 @@ class MenuEjercicios extends StatelessWidget {
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => ListaEjercicios(
+                  builder: (context) => ListExercises(
                     category: ExerciseCategory.SHOULDERS,
                     title: 'Hombros',
                   ),
@@ -216,7 +216,7 @@ class MenuEjercicios extends StatelessWidget {
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => ListaEjercicios(
+                  builder: (context) => ListExercises(
                     category: ExerciseCategory.EVERYTHING,
                     title: 'Todos los ejercicios',
                   ),

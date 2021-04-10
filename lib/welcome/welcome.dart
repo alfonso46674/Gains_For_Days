@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:proyecto_integrador/ejercicios/menu_ejercicios.dart';
+import 'package:proyecto_integrador/exercises/menu_exercises.dart';
 import 'package:proyecto_integrador/login/bloc/login_bloc.dart';
 import 'package:proyecto_integrador/login/form_body.dart';
 import 'package:proyecto_integrador/utils/constants.dart';

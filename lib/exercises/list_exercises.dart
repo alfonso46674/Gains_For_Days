@@ -3,24 +3,24 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:proyecto_integrador/repositories/enumerations.dart';
 import 'package:proyecto_integrador/repositories/exerciseApiClient.dart';
 import 'package:proyecto_integrador/repositories/exercise_repository.dart';
-import 'bloc/ejercicios_bloc.dart';
-import 'item_ejercicios.dart';
+import 'bloc/exercises_bloc.dart';
+import 'item_exercise.dart';
 import 'package:http/http.dart' as http;
 
-class ListaEjercicios extends StatefulWidget {
+class ListExercises extends StatefulWidget {
   final ExerciseCategory category;
   final String title;
-  const ListaEjercicios({
+  const ListExercises({
     this.category,
     this.title,
     Key key,
   }) : super(key: key);
 
   @override
-  _ListaEjerciciosState createState() => _ListaEjerciciosState();
+  _ListExercisesState createState() => _ListExercisesState();
 }
 
-class _ListaEjerciciosState extends State<ListaEjercicios> {
+class _ListExercisesState extends State<ListExercises> {
   EjerciciosBloc _ejerciciosBloc;
   ExerciseRepository repositorio = ExerciseRepository(
     exerciseApiClient: ExerciseApiClient(
@@ -44,7 +44,7 @@ class _ListaEjerciciosState extends State<ListaEjercicios> {
             IconButton(
               icon: Icon(Icons.search),
               onPressed: () {
-                Navigator.pushNamed(context, '/busquedaEjercicios');
+                Navigator.pushNamed(context, '/searchExercise');
               },
             ),
           ],
@@ -76,13 +76,12 @@ class _ListaEjerciciosState extends State<ListaEjercicios> {
         }
         //Ejercicios cargados exitosamente
         if (state is EjerciciosCargadosState) {
-          //TODO: Regrear lista de ejercicios que cumplan con condicion
           return ListView.builder(
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
             itemCount: state.exercisesList.length,
             itemBuilder: (BuildContext context, int index) {
-              return ItemMenuEjercicios(
+              return ItemExercise(
                 ejercicio: state.exercisesList[index],
               );
             },
