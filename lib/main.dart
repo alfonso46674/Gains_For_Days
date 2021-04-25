@@ -6,7 +6,7 @@ import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'package:proyecto_integrador/auth/bloc/auth_bloc.dart';
-import 'package:proyecto_integrador/exercises/search_exercise.dart';
+import 'package:proyecto_integrador/search/search_exercise.dart';
 import 'package:proyecto_integrador/exercises/menu_exercises.dart';
 import 'package:proyecto_integrador/login/login.dart';
 import 'package:proyecto_integrador/models/exercise.dart';
