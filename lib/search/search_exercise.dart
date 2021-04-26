@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto_integrador/repositories/enumerations.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:proyecto_integrador/exercises/item_exercise.dart';
+import 'package:proyecto_integrador/search/bloc/search_bloc.dart';
 
 class SearchExercise extends StatefulWidget {
   SearchExercise({Key key}) : super(key: key);
@@ -76,61 +78,97 @@ class _SearchExerciseState extends State<SearchExercise> {
       appBar: AppBar(
         title: Text("Search exercise"),
       ),
-      body: Row(
-        children: [
-          //Columna de la derecha dividida en dos: Target groups y equipment
-          Expanded(
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: Text(
-                    'Target groups',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 18),
+      body: BlocProvider(
+          create: (context) => SearchBloc(),
+          child: BlocConsumer<SearchBloc, SearchState>(
+            listener: (context, state) {
+              // TODO: implement listener
+            },
+            builder: (context, state) {
+              return Row(
+                children: [
+                  //Columna de la derecha dividida en dos: Target groups y equipment
+                  Expanded(
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Text(
+                            'Target groups',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 18),
+                          ),
+                        ),
+                        Expanded(
+                          child: buildTargetGroups(),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Text(
+                            'Equipment',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 18),
+                          ),
+                        ),
+                        Expanded(
+                          child: buildEquipment(),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                Expanded(
-                  child: buildTargetGroups(),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: Text(
-                    'Equipment',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 18),
+                  //Columna de la izquierda para mostrar ejercicios buscados
+                  Expanded(
+                    child: Column(
+                      children: [
+                        TextButton(
+                          child: Text('Submit'),
+                          style: TextButton.styleFrom(
+                            primary: Colors.white,
+                            backgroundColor: Colors.grey[600],
+                            onSurface: Colors.grey,
+                          ),
+                          onPressed: () {
+                            BlocProvider.of<SearchBloc>(context).add(
+                                SearchRequestEvent(
+                                    targetGroups: _targetGroupsSearchList,
+                                    equipment: _equipmentSearchList));
+                          },
+                        ),
+                        BlocBuilder<SearchBloc, SearchState>(
+                          builder: (context, state) {
+                            if (state is SearchResultState) {
+                              return Expanded(
+                                child: ListView.builder(
+                                    scrollDirection: Axis.vertical,
+                                    shrinkWrap: true,
+                                    itemCount: state.searchResult.length,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      return ItemExercise(
+                                        ejercicio: state.searchResult[index],
+                                      );
+                                    }),
+                              );
+                            } else if (state is SearchLoadingState) {
+                              return Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            } else {
+                              return Center();
+                            }
+                          },
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                Expanded(
-                  child: buildEquipment(),
-                ),
-              ],
-            ),
-          ),
-          //Columna de la izquierda para mostrar ejercicios buscados
-          Expanded(
-            child: Column(
-              children: [
-                TextButton(
-                  child: Text('Submit'),
-                  style: TextButton.styleFrom(
-                    primary: Colors.white,
-                    backgroundColor: Colors.grey[600],
-                    onSurface: Colors.grey,
-                  ),
-                  onPressed: () {
-                    //TODO: mandar evento al bloc para mostrar los ejercicios
-                  },
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+                ],
+              );
+            },
+          )),
     );
   }
 
