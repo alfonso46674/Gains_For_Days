@@ -29,7 +29,7 @@ class _SearchExerciseState extends State<SearchExercise> {
     'assets/categories/shoulders.png'
   ];
 
-  List<bool> _targetGroupSelectedList = [
+  List<bool> _targetGroupsSelectedList = [
     false,
     false,
     false,
@@ -67,6 +67,9 @@ class _SearchExerciseState extends State<SearchExercise> {
     false
   ];
 
+  List<String> _targetGroupsSearchList = [];
+  List<String> _equipmentSearchList = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -93,7 +96,7 @@ class _SearchExerciseState extends State<SearchExercise> {
                   child: buildTargetGroups(),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top:10),
+                  padding: const EdgeInsets.only(top: 10),
                   child: Text(
                     'Equipment',
                     style: TextStyle(
@@ -112,7 +115,17 @@ class _SearchExerciseState extends State<SearchExercise> {
           Expanded(
             child: Column(
               children: [
-                Text('Lista ejercicios'),
+                TextButton(
+                  child: Text('Submit'),
+                  style: TextButton.styleFrom(
+                    primary: Colors.white,
+                    backgroundColor: Colors.grey[600],
+                    onSurface: Colors.grey,
+                  ),
+                  onPressed: () {
+                    //TODO: mandar evento al bloc para mostrar los ejercicios
+                  },
+                ),
               ],
             ),
           ),
@@ -151,6 +164,16 @@ class _SearchExerciseState extends State<SearchExercise> {
             onTap: () {
               setState(() {
                 _equipmentSelectedList[index] = !_equipmentSelectedList[index];
+
+                //agregar a la lista si esta en true
+                if (_equipmentSelectedList[index] == true) {
+                  _equipmentSearchList.add(_equipmentList[index]);
+                }
+                //buscar y eliminar de la lista
+                else {
+                  _equipmentSearchList.removeWhere(
+                      (element) => element == _equipmentList[index]);
+                }
               });
             },
           ),
@@ -184,11 +207,21 @@ class _SearchExerciseState extends State<SearchExercise> {
               style: TextStyle(color: Colors.black),
             ),
             selectedTileColor: Colors.grey[200],
-            selected: _targetGroupSelectedList[index],
+            selected: _targetGroupsSelectedList[index],
             onTap: () {
               setState(() {
-                _targetGroupSelectedList[index] =
-                    !_targetGroupSelectedList[index];
+                _targetGroupsSelectedList[index] =
+                    !_targetGroupsSelectedList[index];
+
+                //agregar a la lista si esta en true
+                if (_targetGroupsSelectedList[index] == true) {
+                  _targetGroupsSearchList.add(_targetGroupsList[index]);
+                }
+                //buscar y eliminar de la lista
+                else {
+                  _targetGroupsSearchList.removeWhere(
+                      (element) => element == _targetGroupsList[index]);
+                }
               });
             },
           ),
