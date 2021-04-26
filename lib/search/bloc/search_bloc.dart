@@ -31,7 +31,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         List<int> equipmentIds = _mapEquipmentfromStringToInt(event.equipment);
         List<int> targetGroupsIds =
             _mapTargetGroupsFromStringToInt(event.targetGroups);
-
+    
         // si solo se pidio targetGroups
         if (event.equipment.length == 0 && event.targetGroups.length > 0) {
           for(var i = 0; i < ejercicios.length; i++){
@@ -56,7 +56,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
           }
 
         } 
-        else {
+        if(event.equipment.length > 0 && event.targetGroups.length > 0) {
         //si se esta pidiendo equipment y target groups,
           //iterar los ejercicios para poder filtrar
           for (var i = 0; i < ejercicios.length; i++) {
@@ -77,11 +77,16 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
           }
         }
 
-        print(ejerciciosFiltrados.length);
+        //si no se mando nada
+        else if(event.equipment.length == 0 && event.targetGroups.length == 0){
+          yield SearchEmptyRequestState();
+        }
+
+        // print(ejerciciosFiltrados.length);
         yield SearchResultState(searchResult: ejerciciosFiltrados);
 
       } catch (e) {
-        yield ErrorMessageState(errorMsg: e);
+        yield SearchErrorMessageState(errorMsg: e);
       }
     }
   }

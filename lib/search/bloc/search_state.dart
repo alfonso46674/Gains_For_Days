@@ -11,6 +11,8 @@ class SearchInitial extends SearchState {}
 
 class SearchLoadingState extends SearchState{}
 
+class SearchEmptyRequestState extends SearchState{}
+
 //resultado de la busqueda
 class SearchResultState extends SearchState{
   final List<dynamic> searchResult; // sera una lista de los ejercicios econtrados
@@ -21,10 +23,10 @@ class SearchResultState extends SearchState{
   List<Object> get props => [searchResult];
 }
 
-class ErrorMessageState extends SearchState{
+class SearchErrorMessageState extends SearchState{
   final String errorMsg;
 
-  ErrorMessageState({@required this.errorMsg});
+  SearchErrorMessageState({@required this.errorMsg});
 
   @override
   List<Object> get props => [];

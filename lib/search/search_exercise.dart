@@ -82,7 +82,23 @@ class _SearchExerciseState extends State<SearchExercise> {
           create: (context) => SearchBloc(),
           child: BlocConsumer<SearchBloc, SearchState>(
             listener: (context, state) {
-              // TODO: implement listener
+              if (state is SearchEmptyRequestState) {
+                ScaffoldMessenger.of(context)
+                  ..hideCurrentSnackBar()
+                  ..showSnackBar(
+                    SnackBar(
+                      content: Text('Nothing to show'),
+                    ),
+                  );
+              } else if (state is SearchErrorMessageState) {
+                ScaffoldMessenger.of(context)
+                  ..hideCurrentSnackBar()
+                  ..showSnackBar(
+                    SnackBar(
+                      content: Text("${state.errorMsg}"),
+                    ),
+                  );
+              }
             },
             builder: (context, state) {
               return Row(
