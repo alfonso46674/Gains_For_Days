@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:proyecto_integrador/exercises/item_exercise.dart';
-import 'package:proyecto_integrador/utils/constants.dart';
+import 'package:proyecto_integrador/exercises/details_exercise.dart';
+import 'package:proyecto_integrador/models/exercise.dart';
 import 'package:proyecto_integrador/workouts/add_workout/bloc/addworkout_bloc.dart';
 
 class AddWorkout extends StatefulWidget {
@@ -72,6 +72,8 @@ class _AddWorkoutState extends State<AddWorkout> {
 
   List<String> _targetGroupsSearchList = [];
   List<String> _equipmentSearchList = [];
+
+  List<Exercise> _workoutExercises = [];
 
   var _workoutNameTc = TextEditingController();
 
@@ -144,11 +146,11 @@ class _AddWorkoutState extends State<AddWorkout> {
                     child: Column(
                       children: [
                         TextField(
-                          controller: _workoutNameTc,
+                            controller: _workoutNameTc,
                             decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          hintText: 'Workout name',
-                        )),
+                              border: OutlineInputBorder(),
+                              hintText: 'Workout name',
+                            )),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
@@ -175,9 +177,9 @@ class _AddWorkoutState extends State<AddWorkout> {
                               ),
                               onPressed: () {
                                 //TODO: Mandar a guardar los ejercicios y nombre del workout a Firebase
+                                Navigator.pop(context);
                               },
                             ),
-
                           ],
                         ),
                         BlocBuilder<AddworkoutBloc, AddworkoutState>(
@@ -190,9 +192,8 @@ class _AddWorkoutState extends State<AddWorkout> {
                                     itemCount: state.searchResult.length,
                                     itemBuilder:
                                         (BuildContext context, int index) {
-                                      return ItemExercise(
-                                        ejercicio: state.searchResult[index],
-                                      );
+                                      return buildItemListVariation(
+                                          state, index, context);
                                     }),
                               );
                             } else if (state is AddworkoutLoadingState) {
@@ -211,6 +212,58 @@ class _AddWorkoutState extends State<AddWorkout> {
               );
             },
           )),
+    );
+  }
+
+  // Una copia de la vista itemExercise, pero se tuvo que hacer asi porque se necesita tener acceso a las variables privadas de esta clase
+  Container buildItemListVariation(
+      AddworkoutResultState state, int index, BuildContext context) {
+    return Container(
+      child: TextButton(
+        child: Card(
+            child: ListTile(
+              contentPadding: EdgeInsets.symmetric(horizontal: 8),
+          //if the exercice's imageUrl is not null, display said image, otherwise display stock photo
+          leading: Builder(
+            builder: (context) {
+              final condition = state.searchResult[index].imageUrl != null;
+              return condition
+                  ? Image.network(
+                      state.searchResult[index].imageUrl,
+                      width: 50,
+                      height: 50,
+                    )
+                  : Image.asset(
+                      'assets/misc/dummy-square.png',
+                      width: 50,
+                      height: 50,
+                    );
+            },
+          ),
+          title: Text(
+            "${state.searchResult[index].name}",
+            textAlign: TextAlign.left,
+          ),
+          dense: true,
+          trailing: IconButton(
+            icon: Icon(Icons.add),
+            color: Colors.blue,
+            onPressed: () {
+              //TODO: Al momento de seleccionar el icono, cambiar una propiedad de ejercicio (por agregar), de false a true para pueda ser mas facil agregar y quitarlo del arreglo
+              _workoutExercises.add(state.searchResult[index]);
+              print(_workoutExercises.length);
+            },
+          ),
+        )),
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+                builder: (context) => DetailsExercise(
+                      ejercicio: state.searchResult[index],
+                    )),
+          );
+        },
+      ),
     );
   }
 
