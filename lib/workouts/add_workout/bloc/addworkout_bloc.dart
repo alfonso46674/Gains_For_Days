@@ -90,12 +90,19 @@ class AddworkoutBloc extends Bloc<AddworkoutEvent, AddworkoutState> {
         yield AddworkoutErrorMessageState(errorMsg: e);
       }
     }
-    //para guardar los ejercicios del workout en cloud firestore 
-    else if(event is AddWorkoutSaveWorkoutEvent){
+    //para guardar los ejercicios del workout en cloud firestore
+    else if (event is AddWorkoutSaveWorkoutEvent) {
       yield AddworkoutLoadingState();
-      var result = await _saveWorkout(event.workoutExercises);
-      if(result) yield AddworkoutSuccessSaveWorkoutState();
-      else yield AddworkoutFailedSaveWorkoutState();
+      if (event.workoutExercises.length > 0) {
+        var result = await _saveWorkout(event.workoutExercises);
+        if (result)
+          yield AddworkoutSuccessSaveWorkoutState();
+        else
+          yield AddworkoutFailedSaveWorkoutState();
+      } 
+      //si no se mando ningun ejercicio, retornar error de ejercicios vacios
+      else
+        yield AddworkoutEmptyWorkoutState();
     }
   }
 
@@ -104,10 +111,10 @@ class AddworkoutBloc extends Bloc<AddworkoutEvent, AddworkoutState> {
       // print(workoutExercises.length);
       // for (var exercise in workoutExercises)
       //   print(exercise.id);
-    
-      Map<String,dynamic> workout = {};
+
+      Map<String, dynamic> workout = {};
       String mapKey;
-      for(var i = 0; i < workoutExercises.length;i++){
+      for (var i = 0; i < workoutExercises.length; i++) {
         mapKey = 'exercise_$i';
         workout[mapKey] = workoutExercises[i].exerciseToJson();
       }

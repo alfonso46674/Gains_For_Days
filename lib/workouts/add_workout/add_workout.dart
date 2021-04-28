@@ -122,6 +122,14 @@ class _AddWorkoutState extends State<AddWorkout> {
                       content: Text("Failed to save workout"),
                     ),
                   );
+              } else if (state is AddworkoutEmptyWorkoutState) {
+                ScaffoldMessenger.of(context)
+                  ..hideCurrentSnackBar()
+                  ..showSnackBar(
+                    SnackBar(
+                      content: Text("Failed to save workout; Cannot save an empty workout"),
+                    ),
+                  );
               }
             },
             builder: (context, state) {
