@@ -101,7 +101,7 @@ class AddworkoutBloc extends Bloc<AddworkoutEvent, AddworkoutState> {
 
   Future<bool> _saveWorkout(List<Exercise> workoutExercises) async {
     try {
-      print(workoutExercises.length);
+      // print(workoutExercises.length);
       // for (var exercise in workoutExercises)
       //   print(exercise.id);
     
@@ -111,7 +111,6 @@ class AddworkoutBloc extends Bloc<AddworkoutEvent, AddworkoutState> {
         mapKey = 'exercise_$i';
         workout[mapKey] = workoutExercises[i].exerciseToJson();
       }
-      print(workout.length);
       await _cFirestore.collection('workouts').add(workout);
       return true;
     } catch (e) {

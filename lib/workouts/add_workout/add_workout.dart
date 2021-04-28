@@ -106,6 +106,22 @@ class _AddWorkoutState extends State<AddWorkout> {
                       content: Text("${state.errorMsg}"),
                     ),
                   );
+              } else if (state is AddworkoutSuccessSaveWorkoutState) {
+                ScaffoldMessenger.of(context)
+                  ..hideCurrentSnackBar()
+                  ..showSnackBar(
+                    SnackBar(
+                      content: Text("Workout saved successfully"),
+                    ),
+                  );
+              } else if (state is AddworkoutFailedSaveWorkoutState) {
+                ScaffoldMessenger.of(context)
+                  ..hideCurrentSnackBar()
+                  ..showSnackBar(
+                    SnackBar(
+                      content: Text("Failed to save workout"),
+                    ),
+                  );
               }
             },
             builder: (context, state) {
