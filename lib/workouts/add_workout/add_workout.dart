@@ -70,11 +70,14 @@ class _AddWorkoutState extends State<AddWorkout> {
     false
   ];
 
+  //listas de parametros de busqueda para los ejercicios
   List<String> _targetGroupsSearchList = [];
   List<String> _equipmentSearchList = [];
 
+  //lista de ejercicios que conforman el workout a crear
   List<Exercise> _workoutExercises = [];
 
+  //controller para el nombre del workout
   var _workoutNameTc = TextEditingController();
 
   @override
@@ -222,7 +225,7 @@ class _AddWorkoutState extends State<AddWorkout> {
       child: TextButton(
         child: Card(
             child: ListTile(
-              contentPadding: EdgeInsets.symmetric(horizontal: 8),
+          contentPadding: EdgeInsets.symmetric(horizontal: 8),
           //if the exercice's imageUrl is not null, display said image, otherwise display stock photo
           leading: Builder(
             builder: (context) {
@@ -245,15 +248,43 @@ class _AddWorkoutState extends State<AddWorkout> {
             textAlign: TextAlign.left,
           ),
           dense: true,
-          trailing: IconButton(
+          trailing: Builder(builder:(context){
+            final condition = state.searchResult[index].selectedForWorkout;
+            return condition
+            ? IconButton(
+            icon: Icon(Icons.add),
+            color: Colors.grey,
+            onPressed: () {
+              setState(() {
+                //añadir el ejercicio a la lista de ejercicios que conformaran el workout
+                _workoutExercises.removeWhere((exercise) => exercise.id == state.searchResult[index].id);
+                //cambiar el valor de selectedForWorkout
+                state.searchResult[index].selectedForWorkout = !state.searchResult[index].selectedForWorkout;
+                print('\n');
+                for(var i = 0; i < _workoutExercises.length; i++){
+                  print(_workoutExercises[i].id);
+                }
+              });
+            },
+          )
+          : // mostrar icono en azul cuando la condicion sea false
+          IconButton(
             icon: Icon(Icons.add),
             color: Colors.blue,
             onPressed: () {
-              //TODO: Al momento de seleccionar el icono, cambiar una propiedad de ejercicio (por agregar), de false a true para pueda ser mas facil agregar y quitarlo del arreglo
-              _workoutExercises.add(state.searchResult[index]);
-              print(_workoutExercises.length);
+              setState(() {
+                //añadir el ejercicio a la lista de ejercicios que conformaran el workout
+                _workoutExercises.add(state.searchResult[index]);
+                //cambiar el valor de selectedForWorkout
+                state.searchResult[index].selectedForWorkout = !state.searchResult[index].selectedForWorkout;
+                print('\n');
+                for(var i = 0; i < _workoutExercises.length; i++){
+                  print(_workoutExercises[i].id);
+                }
+              });
             },
-          ),
+          );
+          })
         )),
         onPressed: () {
           Navigator.of(context).push(
