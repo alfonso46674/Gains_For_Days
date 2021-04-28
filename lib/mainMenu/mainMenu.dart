@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_integrador/exercises/menu_exercises.dart';
-import 'package:proyecto_integrador/workouts/menu_workouts.dart';
+import 'package:proyecto_integrador/workouts/menu_workouts/menu_workouts.dart';
 
 class MainMenu extends StatefulWidget {
   MainMenu({Key key}) : super(key: key);

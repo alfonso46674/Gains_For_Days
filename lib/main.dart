@@ -13,7 +13,7 @@ import 'package:proyecto_integrador/models/exercise.dart';
 import 'package:proyecto_integrador/register/register.dart';
 import 'package:proyecto_integrador/restartWidget.dart';
 import 'package:proyecto_integrador/workouts/add_workout/add_workout.dart';
-import 'package:proyecto_integrador/workouts/menu_workouts.dart';
+import 'package:proyecto_integrador/workouts/menu_workouts/menu_workouts.dart';
 import 'package:proyecto_integrador/splash/splash.dart';
 import 'package:proyecto_integrador/utils/constants.dart';
 import 'package:proyecto_integrador/welcome/welcome.dart';
