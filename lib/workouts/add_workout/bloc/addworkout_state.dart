@@ -31,3 +31,9 @@ class AddworkoutErrorMessageState extends AddworkoutState{
   @override
   List<Object> get props => [];
 }
+
+class AddworkoutSaveWorkoutState extends AddworkoutState{}
+
+class AddworkoutSuccessSaveWorkoutState extends AddworkoutState{}
+
+class AddworkoutFailedSaveWorkoutState extends AddworkoutState{}

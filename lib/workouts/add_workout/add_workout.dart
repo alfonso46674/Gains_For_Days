@@ -180,6 +180,12 @@ class _AddWorkoutState extends State<AddWorkout> {
                               ),
                               onPressed: () {
                                 //TODO: Mandar a guardar los ejercicios y nombre del workout a Firebase
+                                BlocProvider.of<AddworkoutBloc>(context).add(
+                                  AddWorkoutSaveWorkoutEvent(
+                                    workoutExercises: _workoutExercises,
+                                  ),
+                                );
+                                _workoutExercises = [];
                                 Navigator.pop(context);
                               },
                             ),
@@ -225,67 +231,71 @@ class _AddWorkoutState extends State<AddWorkout> {
       child: TextButton(
         child: Card(
             child: ListTile(
-          contentPadding: EdgeInsets.symmetric(horizontal: 8),
-          //if the exercice's imageUrl is not null, display said image, otherwise display stock photo
-          leading: Builder(
-            builder: (context) {
-              final condition = state.searchResult[index].imageUrl != null;
-              return condition
-                  ? Image.network(
-                      state.searchResult[index].imageUrl,
-                      width: 50,
-                      height: 50,
-                    )
-                  : Image.asset(
-                      'assets/misc/dummy-square.png',
-                      width: 50,
-                      height: 50,
-                    );
-            },
-          ),
-          title: Text(
-            "${state.searchResult[index].name}",
-            textAlign: TextAlign.left,
-          ),
-          dense: true,
-          trailing: Builder(builder:(context){
-            final condition = state.searchResult[index].selectedForWorkout;
-            return condition
-            ? IconButton(
-            icon: Icon(Icons.add),
-            color: Colors.grey,
-            onPressed: () {
-              setState(() {
-                //añadir el ejercicio a la lista de ejercicios que conformaran el workout
-                _workoutExercises.removeWhere((exercise) => exercise.id == state.searchResult[index].id);
-                //cambiar el valor de selectedForWorkout
-                state.searchResult[index].selectedForWorkout = !state.searchResult[index].selectedForWorkout;
-                // print('\n');
-                // for(var i = 0; i < _workoutExercises.length; i++){
-                //   print(_workoutExercises[i].id);
-                // }
-              });
-            },
-          )
-          : // mostrar icono en azul cuando la condicion sea false
-          IconButton(
-            icon: Icon(Icons.add),
-            color: Colors.blue,
-            onPressed: () {
-              setState(() {
-                //añadir el ejercicio a la lista de ejercicios que conformaran el workout
-                _workoutExercises.add(state.searchResult[index]);
-                //cambiar el valor de selectedForWorkout
-                state.searchResult[index].selectedForWorkout = !state.searchResult[index].selectedForWorkout;
-                // print('\n');
-                // for(var i = 0; i < _workoutExercises.length; i++){
-                //   print(_workoutExercises[i].id);
-                // }
-              });
-            },
-          );
-          })
-        )),
+                contentPadding: EdgeInsets.symmetric(horizontal: 8),
+                //if the exercice's imageUrl is not null, display said image, otherwise display stock photo
+                leading: Builder(
+                  builder: (context) {
+                    final condition =
+                        state.searchResult[index].imageUrl != null;
+                    return condition
+                        ? Image.network(
+                            state.searchResult[index].imageUrl,
+                            width: 50,
+                            height: 50,
+                          )
+                        : Image.asset(
+                            'assets/misc/dummy-square.png',
+                            width: 50,
+                            height: 50,
+                          );
+                  },
+                ),
+                title: Text(
+                  "${state.searchResult[index].name}",
+                  textAlign: TextAlign.left,
+                ),
+                dense: true,
+                trailing: Builder(builder: (context) {
+                  final condition =
+                      state.searchResult[index].selectedForWorkout;
+                  return condition
+                      ? IconButton(
+                          icon: Icon(Icons.add),
+                          color: Colors.grey,
+                          onPressed: () {
+                            setState(() {
+                              //añadir el ejercicio a la lista de ejercicios que conformaran el workout
+                              _workoutExercises.removeWhere((exercise) =>
+                                  exercise.id == state.searchResult[index].id);
+                              //cambiar el valor de selectedForWorkout
+                              state.searchResult[index].selectedForWorkout =
+                                  !state.searchResult[index].selectedForWorkout;
+                              // print('\n');
+                              // for(var i = 0; i < _workoutExercises.length; i++){
+                              //   print(_workoutExercises[i].id);
+                              // }
+                            });
+                          },
+                        )
+                      : // mostrar icono en azul cuando la condicion sea false
+                      IconButton(
+                          icon: Icon(Icons.add),
+                          color: Colors.blue,
+                          onPressed: () {
+                            setState(() {
+                              //añadir el ejercicio a la lista de ejercicios que conformaran el workout
+                              _workoutExercises.add(state.searchResult[index]);
+                              //cambiar el valor de selectedForWorkout
+                              state.searchResult[index].selectedForWorkout =
+                                  !state.searchResult[index].selectedForWorkout;
+                              // print('\n');
+                              // for(var i = 0; i < _workoutExercises.length; i++){
+                              //   print(_workoutExercises[i].id);
+                              // }
+                            });
+                          },
+                        );
+                }))),
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(

@@ -1,9 +1,11 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
+import 'package:proyecto_integrador/models/exercise.dart';
 import 'package:proyecto_integrador/repositories/enumerations.dart';
 
 part 'addworkout_event.dart';
@@ -11,6 +13,7 @@ part 'addworkout_state.dart';
 
 class AddworkoutBloc extends Bloc<AddworkoutEvent, AddworkoutState> {
   Box _appDataBox = Hive.box('AppData');
+  final _cFirestore = FirebaseFirestore.instance;
 
   AddworkoutBloc() : super(AddworkoutInitial());
 
@@ -18,6 +21,7 @@ class AddworkoutBloc extends Bloc<AddworkoutEvent, AddworkoutState> {
   Stream<AddworkoutState> mapEventToState(
     AddworkoutEvent event,
   ) async* {
+    //cuando se hace una peticion de busqueda con con los criterios de equipment y targetGroup
     if (event is AddWorkoutSearchRequestEvent) {
       yield AddworkoutLoadingState();
       try {
@@ -86,9 +90,36 @@ class AddworkoutBloc extends Bloc<AddworkoutEvent, AddworkoutState> {
         yield AddworkoutErrorMessageState(errorMsg: e);
       }
     }
+    //para guardar los ejercicios del workout en cloud firestore 
+    else if(event is AddWorkoutSaveWorkoutEvent){
+      yield AddworkoutLoadingState();
+      var result = await _saveWorkout(event.workoutExercises);
+      if(result) yield AddworkoutSuccessSaveWorkoutState();
+      else yield AddworkoutFailedSaveWorkoutState();
+    }
+  }
+
+  Future<bool> _saveWorkout(List<Exercise> workoutExercises) async {
+    try {
+      print(workoutExercises.length);
+      // for (var exercise in workoutExercises)
+      //   print(exercise.id);
+    
+      Map<String,dynamic> workout = {};
+      String mapKey;
+      for(var i = 0; i < workoutExercises.length;i++){
+        mapKey = 'exercise_$i';
+        workout[mapKey] = workoutExercises[i].exerciseToJson();
+      }
+      print(workout.length);
+      await _cFirestore.collection('workouts').add(workout);
+      return true;
+    } catch (e) {
+      print('Error: $e');
+      return false;
+    }
   }
 }
-
 
 List<int> _mapEquipmentfromStringToInt(List<String> equipment) {
   List<int> mappedEquipment = [];

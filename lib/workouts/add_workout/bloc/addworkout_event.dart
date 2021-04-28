@@ -16,3 +16,15 @@ class AddWorkoutSearchRequestEvent extends AddworkoutEvent {
   @override
   List<Object> get props => [targetGroups, equipment];
 }
+
+class AddWorkoutSaveWorkoutEvent extends AddworkoutEvent {
+  final List<Exercise> workoutExercises;
+
+
+  const AddWorkoutSaveWorkoutEvent({this.workoutExercises});
+
+  @override
+  List<Object> get props => [workoutExercises];
+}
+
+

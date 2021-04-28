@@ -61,4 +61,16 @@ class Exercise extends Equatable {
     // }
   }
 
+   Map<String,dynamic> exerciseToJson(){
+    return {
+      'id':id,
+      'name':name,
+      'category':category,
+      'description':description,
+      'mainMuscles':mainMuscles,
+      'secondaryMuscles':secondaryMuscles,
+      'imageUrl':imageUrl
+    };
+  }
+
 }
