@@ -260,10 +260,10 @@ class _AddWorkoutState extends State<AddWorkout> {
                 _workoutExercises.removeWhere((exercise) => exercise.id == state.searchResult[index].id);
                 //cambiar el valor de selectedForWorkout
                 state.searchResult[index].selectedForWorkout = !state.searchResult[index].selectedForWorkout;
-                print('\n');
-                for(var i = 0; i < _workoutExercises.length; i++){
-                  print(_workoutExercises[i].id);
-                }
+                // print('\n');
+                // for(var i = 0; i < _workoutExercises.length; i++){
+                //   print(_workoutExercises[i].id);
+                // }
               });
             },
           )
@@ -277,10 +277,10 @@ class _AddWorkoutState extends State<AddWorkout> {
                 _workoutExercises.add(state.searchResult[index]);
                 //cambiar el valor de selectedForWorkout
                 state.searchResult[index].selectedForWorkout = !state.searchResult[index].selectedForWorkout;
-                print('\n');
-                for(var i = 0; i < _workoutExercises.length; i++){
-                  print(_workoutExercises[i].id);
-                }
+                // print('\n');
+                // for(var i = 0; i < _workoutExercises.length; i++){
+                //   print(_workoutExercises[i].id);
+                // }
               });
             },
           );
