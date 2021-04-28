@@ -127,7 +127,8 @@ class _AddWorkoutState extends State<AddWorkout> {
                   ..hideCurrentSnackBar()
                   ..showSnackBar(
                     SnackBar(
-                      content: Text("Failed to save workout; Cannot save an empty workout"),
+                      content: Text(
+                          "Failed to save workout; Cannot save an empty workout"),
                     ),
                   );
               }
@@ -219,15 +220,17 @@ class _AddWorkoutState extends State<AddWorkout> {
                           builder: (context, state) {
                             if (state is AddworkoutResultState) {
                               return Expanded(
-                                child: ListView.builder(
-                                    scrollDirection: Axis.vertical,
-                                    shrinkWrap: true,
-                                    itemCount: state.searchResult.length,
-                                    itemBuilder:
-                                        (BuildContext context, int index) {
-                                      return buildItemListVariation(
-                                          state, index, context);
-                                    }),
+                                child: Scrollbar(
+                                  child: ListView.builder(
+                                      scrollDirection: Axis.vertical,
+                                      shrinkWrap: true,
+                                      itemCount: state.searchResult.length,
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        return buildItemListVariation(
+                                            state, index, context);
+                                      }),
+                                ),
                               );
                             } else if (state is AddworkoutLoadingState) {
                               return Center(
