@@ -204,10 +204,10 @@ class _AddWorkoutState extends State<AddWorkout> {
                                 onSurface: Colors.grey,
                               ),
                               onPressed: () {
-                                //TODO: Mandar a guardar los ejercicios y nombre del workout a Firebase
                                 BlocProvider.of<AddworkoutBloc>(context).add(
                                   AddWorkoutSaveWorkoutEvent(
                                     workoutExercises: _workoutExercises,
+                                    workoutName: _workoutNameTc.text
                                   ),
                                 );
                                 _workoutExercises = [];
