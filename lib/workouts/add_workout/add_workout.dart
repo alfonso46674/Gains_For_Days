@@ -211,7 +211,14 @@ class _AddWorkoutState extends State<AddWorkout> {
                                     exerciseCount: _workoutExercises.length,
                                   ),
                                 );
+                                //reiniciar el selectedForWorkout de cada ejercicio en _workoutExercises a false
+                                for(var i = 0; i <_workoutExercises.length; i++){
+                                  _workoutExercises[i].selectedForWorkout = false;
+                                }
+                                //reiniciar en vacio los arreglos
                                 _workoutExercises = [];
+                                _targetGroupsSearchList = [];
+                                _equipmentSearchList = [];
                                 Navigator.pop(context);
                               },
                             ),
