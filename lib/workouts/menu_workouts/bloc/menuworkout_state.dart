@@ -33,3 +33,5 @@ class MenuWorkoutErrorState extends MenuworkoutState {
    @override
   List<Object> get props => [errorMsg];
 }
+
+class MenuWorkoutSuccessfulWorkoutDeletion extends MenuworkoutState {}

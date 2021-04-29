@@ -43,7 +43,32 @@ class _MenuWorkoutsState extends State<MenuWorkouts> {
         },
         child: BlocConsumer<MenuWorkoutBloc, MenuworkoutState>(
           listener: (context, state) {
-            // TODO: implement listener
+            //al borrar un workout
+            if (state is MenuWorkoutSuccessfulWorkoutDeletion) {
+              ScaffoldMessenger.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(
+                  SnackBar(
+                    content: Text('Workout deleted successfully'),
+                  ),
+                );
+              //llamar a los workouts otra vez
+              BlocProvider.of<MenuWorkoutBloc>(context)
+                  .add(MenuWorkoutRequestWorkouts());
+            }
+            //si hay algun error cualquiera
+            else if (state is MenuWorkoutErrorState) {
+              ScaffoldMessenger.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(
+                  SnackBar(
+                    content: Text('${state.errorMsg}'),
+                  ),
+                );
+              //llamar a los workouts otra vez
+              BlocProvider.of<MenuWorkoutBloc>(context)
+                  .add(MenuWorkoutRequestWorkouts());
+            }
           },
           builder: (context, state) {
             return Column(
@@ -65,11 +90,24 @@ class _MenuWorkoutsState extends State<MenuWorkouts> {
                                 return Container(
                                   child: TextButton(
                                     child: Card(
-                                        child: ListTile(
-                                      leading: FlutterLogo(),
-                                      title:
-                                          Text("${state.workoutNames[index]}"),
-                                    )),
+                                      child: ListTile(
+                                        leading: FlutterLogo(),
+                                        title: Text(
+                                            "${state.workoutNames[index]}"),
+                                        trailing: IconButton(
+                                            icon: Icon(Icons.delete),
+                                            onPressed: () {
+                                              //delete workout
+                                              BlocProvider.of<MenuWorkoutBloc>(
+                                                      context)
+                                                  .add(
+                                                      MenuWorkoutDeleteWorkoutEvent(
+                                                workoutName:
+                                                    state.workoutNames[index],
+                                              ));
+                                            }),
+                                      ),
+                                    ),
                                     onPressed: () {
                                       Navigator.of(context).push(
                                         MaterialPageRoute(

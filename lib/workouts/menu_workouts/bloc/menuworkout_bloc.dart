@@ -18,6 +18,7 @@ class MenuWorkoutBloc extends Bloc<MenuworkoutEvent, MenuworkoutState> {
   Stream<MenuworkoutState> mapEventToState(
     MenuworkoutEvent event,
   ) async* {
+    // cuando se piden los workouts a firebase
     if (event is MenuWorkoutRequestWorkouts) {
       yield MenuWorkoutLoadingState();
       try {
@@ -31,6 +32,15 @@ class MenuWorkoutBloc extends Bloc<MenuworkoutEvent, MenuworkoutState> {
       } catch (e) {
         yield MenuWorkoutErrorState(errorMsg: e);
       }
+    }
+    //se quiere eliminar un workout
+
+    else if (event is MenuWorkoutDeleteWorkoutEvent) {
+      // print(await _deleteWorkout(event.workoutName));
+      if (await _deleteWorkout(event.workoutName)) {
+        yield MenuWorkoutSuccessfulWorkoutDeletion();
+      } else
+        yield MenuWorkoutErrorState(errorMsg: 'Error while deleting workout');
     }
   }
 
@@ -65,26 +75,26 @@ class MenuWorkoutBloc extends Bloc<MenuworkoutEvent, MenuworkoutState> {
     });
     return workoutNames;
   }
-}
 
-// cada elemento agregarlo a una lista.
-// Future<List<NewFirebase>> _getNoticias() async {
-//   try {
-//     var noticias = await _cFirestore.collection("noticias").get();
-//     return noticias.docs
-//         .map(
-//           (element) => NewFirebase(
-//             author: element["author"],
-//             title: element["title"],
-//             urlToImage: element["urlToImage"],
-//             description: element["description"],
-//             // source: element["source"],
-//             //publishedAt: DateTime.parse(element["publishedAt"]),
-//           ),
-//         )
-//         .toList();
-//   } catch (e) {
-//     print("Error: $e");
-//     return [];
-//   }
-// }
+  Future<bool> _deleteWorkout(String workoutName) async {
+    //https://stackoverflow.com/questions/63897130/deleting-document-from-cloud-firestore-in-flutter
+    try {
+      var data = await _cFirestore
+          .collection('workouts')
+          .where('workoutName', isEqualTo: workoutName)
+          .get();
+      var workoutToDelete = data.docs;
+
+      //the workout exists
+      if (workoutToDelete.isNotEmpty && workoutToDelete.length > 0) {
+        workoutToDelete.forEach((element) async {
+          await _cFirestore.collection('workouts').doc(element.id).delete();
+        });
+        return true;
+      } else
+        return false;
+    } catch (e) {
+      return false;
+    }
+  }
+}
