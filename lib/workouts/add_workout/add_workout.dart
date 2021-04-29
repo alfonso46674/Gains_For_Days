@@ -207,7 +207,8 @@ class _AddWorkoutState extends State<AddWorkout> {
                                 BlocProvider.of<AddworkoutBloc>(context).add(
                                   AddWorkoutSaveWorkoutEvent(
                                     workoutExercises: _workoutExercises,
-                                    workoutName: _workoutNameTc.text
+                                    workoutName: _workoutNameTc.text,
+                                    exerciseCount: _workoutExercises.length,
                                   ),
                                 );
                                 _workoutExercises = [];

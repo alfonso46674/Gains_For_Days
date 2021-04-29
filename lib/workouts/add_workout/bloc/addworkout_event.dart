@@ -20,12 +20,14 @@ class AddWorkoutSearchRequestEvent extends AddworkoutEvent {
 class AddWorkoutSaveWorkoutEvent extends AddworkoutEvent {
   final List<Exercise> workoutExercises;
   final String workoutName;
+  final int exerciseCount;
 
   const AddWorkoutSaveWorkoutEvent({
     this.workoutExercises,
     this.workoutName,
+    this.exerciseCount
   });
 
   @override
-  List<Object> get props => [workoutExercises, workoutName];
+  List<Object> get props => [workoutExercises, workoutName,exerciseCount];
 }

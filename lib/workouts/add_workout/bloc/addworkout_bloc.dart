@@ -94,7 +94,7 @@ class AddworkoutBloc extends Bloc<AddworkoutEvent, AddworkoutState> {
     else if (event is AddWorkoutSaveWorkoutEvent) {
       yield AddworkoutLoadingState();
       if (event.workoutExercises.length > 0) {
-        var result = await _saveWorkout(event.workoutExercises, event.workoutName);
+        var result = await _saveWorkout(event.workoutExercises, event.workoutName, event.exerciseCount);
         if (result)
           yield AddworkoutSuccessSaveWorkoutState();
         else
@@ -106,7 +106,7 @@ class AddworkoutBloc extends Bloc<AddworkoutEvent, AddworkoutState> {
     }
   }
 
-  Future<bool> _saveWorkout(List<Exercise> workoutExercises, String workoutName) async {
+  Future<bool> _saveWorkout(List<Exercise> workoutExercises, String workoutName, int exerciseCount) async {
     try {
       // print(workoutExercises.length);
       // for (var exercise in workoutExercises)
@@ -115,6 +115,7 @@ class AddworkoutBloc extends Bloc<AddworkoutEvent, AddworkoutState> {
       Map<String, dynamic> workout = {};
       String mapKey;
       workout['workoutName'] = workoutName;
+      workout['exerciseCount'] = exerciseCount;
       for (var i = 0; i < workoutExercises.length; i++) {
         mapKey = 'exercise_$i';
         workout[mapKey] = workoutExercises[i].exerciseToJson();
