@@ -86,176 +86,174 @@ class _AddWorkoutState extends State<AddWorkout> {
       appBar: AppBar(
         title: Text("Search exercise"),
       ),
-      body: BlocProvider(
-          create: (context) => AddworkoutBloc(),
-          child: BlocConsumer<AddworkoutBloc, AddworkoutState>(
-            listener: (context, state) {
-              if (state is AddworkoutEmptyRequestState) {
-                ScaffoldMessenger.of(context)
-                  ..hideCurrentSnackBar()
-                  ..showSnackBar(
-                    SnackBar(
-                      content: Text('Nothing to show'),
+      body: BlocConsumer<AddworkoutBloc, AddworkoutState>(
+        listener: (context, state) {
+          if (state is AddworkoutEmptyRequestState) {
+            ScaffoldMessenger.of(context)
+              ..hideCurrentSnackBar()
+              ..showSnackBar(
+                SnackBar(
+                  content: Text('Nothing to show'),
+                ),
+              );
+          } else if (state is AddworkoutErrorMessageState) {
+            ScaffoldMessenger.of(context)
+              ..hideCurrentSnackBar()
+              ..showSnackBar(
+                SnackBar(
+                  content: Text("${state.errorMsg}"),
+                ),
+              );
+          } else if (state is AddworkoutSuccessSaveWorkoutState) {
+            ScaffoldMessenger.of(context)
+              ..hideCurrentSnackBar()
+              ..showSnackBar(
+                SnackBar(
+                  content: Text("Workout saved successfully"),
+                ),
+              );
+          } else if (state is AddworkoutFailedSaveWorkoutState) {
+            ScaffoldMessenger.of(context)
+              ..hideCurrentSnackBar()
+              ..showSnackBar(
+                SnackBar(
+                  content: Text("Failed to save workout"),
+                ),
+              );
+          } else if (state is AddworkoutEmptyWorkoutState) {
+            ScaffoldMessenger.of(context)
+              ..hideCurrentSnackBar()
+              ..showSnackBar(
+                SnackBar(
+                  content: Text(
+                      "Failed to save workout; Cannot save an empty workout"),
+                ),
+              );
+          }
+        },
+        builder: (context, state) {
+          return Row(
+            children: [
+              //Columna de la derecha dividida en dos: Target groups y equipment
+              Expanded(
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Text(
+                        'Target groups',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 18),
+                      ),
                     ),
-                  );
-              } else if (state is AddworkoutErrorMessageState) {
-                ScaffoldMessenger.of(context)
-                  ..hideCurrentSnackBar()
-                  ..showSnackBar(
-                    SnackBar(
-                      content: Text("${state.errorMsg}"),
+                    Expanded(
+                      child: buildTargetGroups(),
                     ),
-                  );
-              } else if (state is AddworkoutSuccessSaveWorkoutState) {
-                ScaffoldMessenger.of(context)
-                  ..hideCurrentSnackBar()
-                  ..showSnackBar(
-                    SnackBar(
-                      content: Text("Workout saved successfully"),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Text(
+                        'Equipment',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 18),
+                      ),
                     ),
-                  );
-              } else if (state is AddworkoutFailedSaveWorkoutState) {
-                ScaffoldMessenger.of(context)
-                  ..hideCurrentSnackBar()
-                  ..showSnackBar(
-                    SnackBar(
-                      content: Text("Failed to save workout"),
+                    Expanded(
+                      child: buildEquipment(),
                     ),
-                  );
-              } else if (state is AddworkoutEmptyWorkoutState) {
-                ScaffoldMessenger.of(context)
-                  ..hideCurrentSnackBar()
-                  ..showSnackBar(
-                    SnackBar(
-                      content: Text(
-                          "Failed to save workout; Cannot save an empty workout"),
-                    ),
-                  );
-              }
-            },
-            builder: (context, state) {
-              return Row(
-                children: [
-                  //Columna de la derecha dividida en dos: Target groups y equipment
-                  Expanded(
-                    child: Column(
+                  ],
+                ),
+              ),
+              //Columna de la izquierda para mostrar ejercicios buscados
+              Expanded(
+                child: Column(
+                  children: [
+                    TextField(
+                        controller: _workoutNameTc,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: 'Workout name',
+                        )),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Text(
-                            'Target groups',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 18),
+                        TextButton(
+                          child: Text('Search'),
+                          style: TextButton.styleFrom(
+                            primary: Colors.white,
+                            backgroundColor: Colors.grey[600],
+                            onSurface: Colors.grey,
                           ),
+                          onPressed: () {
+                            BlocProvider.of<AddworkoutBloc>(context).add(
+                                AddWorkoutSearchRequestEvent(
+                                    targetGroups: _targetGroupsSearchList,
+                                    equipment: _equipmentSearchList));
+                          },
                         ),
-                        Expanded(
-                          child: buildTargetGroups(),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Text(
-                            'Equipment',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 18),
+                        TextButton(
+                          child: Text('Add Workout'),
+                          style: TextButton.styleFrom(
+                            primary: Colors.white,
+                            backgroundColor: Colors.grey[600],
+                            onSurface: Colors.grey,
                           ),
-                        ),
-                        Expanded(
-                          child: buildEquipment(),
-                        ),
-                      ],
-                    ),
-                  ),
-                  //Columna de la izquierda para mostrar ejercicios buscados
-                  Expanded(
-                    child: Column(
-                      children: [
-                        TextField(
-                            controller: _workoutNameTc,
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              hintText: 'Workout name',
-                            )),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            TextButton(
-                              child: Text('Search'),
-                              style: TextButton.styleFrom(
-                                primary: Colors.white,
-                                backgroundColor: Colors.grey[600],
-                                onSurface: Colors.grey,
+                          onPressed: () {
+                            BlocProvider.of<AddworkoutBloc>(context).add(
+                              AddWorkoutSaveWorkoutEvent(
+                                workoutExercises: _workoutExercises,
+                                workoutName: _workoutNameTc.text,
+                                exerciseCount: _workoutExercises.length,
                               ),
-                              onPressed: () {
-                                BlocProvider.of<AddworkoutBloc>(context).add(
-                                    AddWorkoutSearchRequestEvent(
-                                        targetGroups: _targetGroupsSearchList,
-                                        equipment: _equipmentSearchList));
-                              },
-                            ),
-                            TextButton(
-                              child: Text('Add Workout'),
-                              style: TextButton.styleFrom(
-                                primary: Colors.white,
-                                backgroundColor: Colors.grey[600],
-                                onSurface: Colors.grey,
-                              ),
-                              onPressed: () {
-                                BlocProvider.of<AddworkoutBloc>(context).add(
-                                  AddWorkoutSaveWorkoutEvent(
-                                    workoutExercises: _workoutExercises,
-                                    workoutName: _workoutNameTc.text,
-                                    exerciseCount: _workoutExercises.length,
-                                  ),
-                                );
-                                //reiniciar el selectedForWorkout de cada ejercicio en _workoutExercises a false
-                                for(var i = 0; i <_workoutExercises.length; i++){
-                                  _workoutExercises[i].selectedForWorkout = false;
-                                }
-                                //reiniciar en vacio los arreglos
-                                _workoutExercises = [];
-                                _targetGroupsSearchList = [];
-                                _equipmentSearchList = [];
-                                Navigator.pop(context);
-                              },
-                            ),
-                          ],
-                        ),
-                        BlocBuilder<AddworkoutBloc, AddworkoutState>(
-                          builder: (context, state) {
-                            if (state is AddworkoutResultState) {
-                              return Expanded(
-                                child: Scrollbar(
-                                  child: ListView.builder(
-                                      scrollDirection: Axis.vertical,
-                                      shrinkWrap: true,
-                                      itemCount: state.searchResult.length,
-                                      itemBuilder:
-                                          (BuildContext context, int index) {
-                                        return buildItemListVariation(
-                                            state, index, context);
-                                      }),
-                                ),
-                              );
-                            } else if (state is AddworkoutLoadingState) {
-                              return Center(
-                                child: CircularProgressIndicator(),
-                              );
-                            } else {
-                              return Center();
+                            );
+                            //reiniciar el selectedForWorkout de cada ejercicio en _workoutExercises a false
+                            for (var i = 0; i < _workoutExercises.length; i++) {
+                              _workoutExercises[i].selectedForWorkout = false;
                             }
+                            //reiniciar en vacio los arreglos
+                            _workoutExercises = [];
+                            _targetGroupsSearchList = [];
+                            _equipmentSearchList = [];
+                            Navigator.pop(context);
                           },
                         ),
                       ],
                     ),
-                  ),
-                ],
-              );
-            },
-          )),
+                    BlocBuilder<AddworkoutBloc, AddworkoutState>(
+                      builder: (context, state) {
+                        if (state is AddworkoutResultState) {
+                          return Expanded(
+                            child: Scrollbar(
+                              child: ListView.builder(
+                                  scrollDirection: Axis.vertical,
+                                  shrinkWrap: true,
+                                  itemCount: state.searchResult.length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return buildItemListVariation(
+                                        state, index, context);
+                                  }),
+                            ),
+                          );
+                        } else if (state is AddworkoutLoadingState) {
+                          return Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        } else {
+                          return Center();
+                        }
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          );
+        },
+      ),
     );
   }
 

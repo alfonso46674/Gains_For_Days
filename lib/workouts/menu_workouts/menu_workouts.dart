@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:proyecto_integrador/utils/constants.dart';
+import 'package:proyecto_integrador/workouts/add_workout/add_workout.dart';
+import 'package:proyecto_integrador/workouts/add_workout/bloc/addworkout_bloc.dart';
 import 'package:proyecto_integrador/workouts/menu_workouts/bloc/menuworkout_bloc.dart';
 import 'package:proyecto_integrador/workouts/show_exercises_workout/list_exercises_workout.dart';
 
@@ -18,10 +20,27 @@ class _MenuWorkoutsState extends State<MenuWorkouts> {
       appBar: AppBar(
         title: Text("My workouts"),
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.refresh,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              BlocProvider.of<MenuWorkoutBloc>(context)
+                  .add(MenuWorkoutRequestWorkouts());
+            },
+          ),
+        ],
       ),
-      body: BlocProvider(
-        create: (context) =>
-            MenuWorkoutBloc()..add(MenuWorkoutRequestWorkouts()),
+      body: BlocListener<AddworkoutBloc, AddworkoutState>(
+        listener: (context, state) {
+          //refrescar los workouts en cuanto se suba uno nuevo
+          if (state is AddworkoutSuccessSaveWorkoutState) {
+            BlocProvider.of<MenuWorkoutBloc>(context)
+                .add(MenuWorkoutRequestWorkouts());
+          }
+        },
         child: BlocConsumer<MenuWorkoutBloc, MenuworkoutState>(
           listener: (context, state) {
             // TODO: implement listener
@@ -56,9 +75,10 @@ class _MenuWorkoutsState extends State<MenuWorkouts> {
                                         MaterialPageRoute(
                                             builder: (context) =>
                                                 ListExercisesWorkout(
-                                                  exercisesWorkout:
-                                                      state.workoutExercises[index],
-                                                      workoutName: state.workoutNames[index],
+                                                  exercisesWorkout: state
+                                                      .workoutExercises[index],
+                                                  workoutName:
+                                                      state.workoutNames[index],
                                                 )),
                                       );
                                     },
@@ -90,7 +110,16 @@ class _MenuWorkoutsState extends State<MenuWorkouts> {
                         style: TextStyle(color: Colors.white),
                       ),
                       onPressed: () {
-                        Navigator.of(context).pushNamed('/addWorkout');
+                        //https://www.youtube.com/watch?v=laqnY0NjU3M&t=440s
+                        //minuto 7:00 para comunicacion de blocs entre rutas
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                              builder: (_) => BlocProvider.value(
+                                    value: BlocProvider.of<AddworkoutBloc>(
+                                        context),
+                                    child: AddWorkout(),
+                                  )),
+                        );
                       },
                     ),
                   ),
