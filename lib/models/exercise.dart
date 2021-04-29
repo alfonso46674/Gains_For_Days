@@ -66,6 +66,7 @@ class Exercise extends Equatable {
       'id':id,
       'name':name,
       'category':category,
+      'equipment':equipment,
       'description':description,
       'mainMuscles':mainMuscles,
       'secondaryMuscles':secondaryMuscles,

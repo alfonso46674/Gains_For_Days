@@ -26,7 +26,7 @@ class MenuWorkoutBloc extends Bloc<MenuworkoutEvent, MenuworkoutState> {
 
         yield MenuWorkoutLoadedWorkoutState(
           workoutExercises: _getWorkoutExercises(docSnapshots),
-          workoutName: _getWorkoutName(docSnapshots),
+          workoutNames: _getWorkoutNames(docSnapshots),
         );
       } catch (e) {
         yield MenuWorkoutErrorState(errorMsg: e);
@@ -58,7 +58,7 @@ class MenuWorkoutBloc extends Bloc<MenuworkoutEvent, MenuworkoutState> {
     return listOfWorkout;
   }
 
-  List<String> _getWorkoutName(List<QueryDocumentSnapshot> data) {
+  List<String> _getWorkoutNames(List<QueryDocumentSnapshot> data) {
     List<String> workoutNames = [];
     data.forEach((workout) {
       workoutNames.add(workout['workoutName']);

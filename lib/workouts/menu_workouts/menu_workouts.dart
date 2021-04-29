@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:proyecto_integrador/utils/constants.dart';
 import 'package:proyecto_integrador/workouts/menu_workouts/bloc/menuworkout_bloc.dart';
+import 'package:proyecto_integrador/workouts/show_exercises_workout/list_exercises_workout.dart';
 
 class MenuWorkouts extends StatefulWidget {
   MenuWorkouts({Key key}) : super(key: key);
@@ -47,15 +48,19 @@ class _MenuWorkoutsState extends State<MenuWorkouts> {
                                     child: Card(
                                         child: ListTile(
                                       leading: FlutterLogo(),
-                                      title: Text("${state.workoutName[index]}"),
+                                      title:
+                                          Text("${state.workoutNames[index]}"),
                                     )),
                                     onPressed: () {
-                                      // Navigator.of(context).push(
-                                      //   MaterialPageRoute(
-                                      //       builder: (context) => DetailsExercise(
-                                      //             ejercicio: widget.ejercicio,
-                                      //           )),
-                                      // );
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                ListExercisesWorkout(
+                                                  exercisesWorkout:
+                                                      state.workoutExercises[index],
+                                                      workoutName: state.workoutNames[index],
+                                                )),
+                                      );
                                     },
                                   ),
                                 );

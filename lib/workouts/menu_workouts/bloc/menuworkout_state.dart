@@ -13,17 +13,17 @@ class MenuWorkoutLoadingState extends MenuworkoutState {}
 
 class MenuWorkoutLoadedWorkoutState extends MenuworkoutState {
   final List<List<Exercise>> workoutExercises;
-  final List<String> workoutName;
+  final List<String> workoutNames;
 
   MenuWorkoutLoadedWorkoutState({
     @required this.workoutExercises,
-    @required this.workoutName,
+    @required this.workoutNames,
   });
 
   @override
   List<Object> get props => [
         workoutExercises,
-        workoutName,
+        workoutNames,
       ];
 }
 
