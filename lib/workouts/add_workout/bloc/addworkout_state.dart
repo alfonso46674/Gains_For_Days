@@ -39,3 +39,5 @@ class AddworkoutSuccessSaveWorkoutState extends AddworkoutState{}
 class AddworkoutFailedSaveWorkoutState extends AddworkoutState{}
 
 class AddworkoutEmptyWorkoutState extends AddworkoutState{}
+
+class AddWorkoutEmptyResultsState extends AddworkoutState{}

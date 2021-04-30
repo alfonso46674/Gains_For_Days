@@ -32,3 +32,4 @@ class SearchErrorMessageState extends SearchState{
   List<Object> get props => [];
 }
 
+class SearchEmptyResultsState extends SearchState{}

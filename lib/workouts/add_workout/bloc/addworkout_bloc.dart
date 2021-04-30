@@ -85,6 +85,10 @@ class AddworkoutBloc extends Bloc<AddworkoutEvent, AddworkoutState> {
         }
 
         // print(ejerciciosFiltrados.length);
+        if (ejerciciosFiltrados.length == 0) {
+          yield AddWorkoutEmptyResultsState();
+        }
+
         yield AddworkoutResultState(searchResult: ejerciciosFiltrados);
       } catch (e) {
         yield AddworkoutErrorMessageState(errorMsg: e);
