@@ -109,6 +109,14 @@ class _SearchExerciseState extends State<SearchExercise> {
                       content: Text("${state.errorMsg}"),
                     ),
                   );
+              } else if (state is SearchEmptyResultsState) {
+                ScaffoldMessenger.of(context)
+                  ..hideCurrentSnackBar()
+                  ..showSnackBar(
+                    SnackBar(
+                      content: Text("No exercises matched with the current filter"),
+                    ),
+                  );
               }
             },
             builder: (context, state) {

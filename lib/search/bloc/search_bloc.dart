@@ -31,33 +31,31 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         List<int> equipmentIds = _mapEquipmentfromStringToInt(event.equipment);
         List<int> targetGroupsIds =
             _mapTargetGroupsFromStringToInt(event.targetGroups);
-    
+
         // si solo se pidio targetGroups
         if (event.equipment.length == 0 && event.targetGroups.length > 0) {
-          for(var i = 0; i < ejercicios.length; i++){
-            for(var j = 0; j < targetGroupsIds.length; j++){
-              if(targetGroupsIds.contains(ejercicios[i].category)){
+          for (var i = 0; i < ejercicios.length; i++) {
+            for (var j = 0; j < targetGroupsIds.length; j++) {
+              if (targetGroupsIds.contains(ejercicios[i].category)) {
                 ejerciciosFiltrados.add(ejercicios[i]);
                 break;
               }
             }
           }
-
         }
         //si solo se pidio equipment
         else if (event.targetGroups.length == 0 && event.equipment.length > 0) {
-          for(var i = 0; i < ejercicios.length; i++){
-            for(var j = 0; j < equipmentIds.length; j++){
-              if(ejercicios[i].equipment.contains(equipmentIds[j])){
+          for (var i = 0; i < ejercicios.length; i++) {
+            for (var j = 0; j < equipmentIds.length; j++) {
+              if (ejercicios[i].equipment.contains(equipmentIds[j])) {
                 ejerciciosFiltrados.add(ejercicios[i]);
                 break;
               }
             }
           }
-
-        } 
-        if(event.equipment.length > 0 && event.targetGroups.length > 0) {
-        //si se esta pidiendo equipment y target groups,
+        }
+        if (event.equipment.length > 0 && event.targetGroups.length > 0) {
+          //si se esta pidiendo equipment y target groups,
           //iterar los ejercicios para poder filtrar
           for (var i = 0; i < ejercicios.length; i++) {
             //filtrar los ejercicios por medio de la lista de equipment y targetgroup
@@ -78,13 +76,16 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         }
 
         //si no se mando nada
-        else if(event.equipment.length == 0 && event.targetGroups.length == 0){
+        else if (event.equipment.length == 0 &&
+            event.targetGroups.length == 0) {
           yield SearchEmptyRequestState();
         }
 
         // print(ejerciciosFiltrados.length);
+        if (ejerciciosFiltrados.length == 0) {
+          yield SearchEmptyResultsState();
+        }
         yield SearchResultState(searchResult: ejerciciosFiltrados);
-
       } catch (e) {
         yield SearchErrorMessageState(errorMsg: e);
       }

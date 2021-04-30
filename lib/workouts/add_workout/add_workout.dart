@@ -140,7 +140,15 @@ class _AddWorkoutState extends State<AddWorkout> {
                       "Failed to save workout; Cannot save an empty workout"),
                 ),
               );
-          }
+          } else if (state is AddWorkoutEmptyResultsState) {
+                ScaffoldMessenger.of(context)
+                  ..hideCurrentSnackBar()
+                  ..showSnackBar(
+                    SnackBar(
+                      content: Text("No exercises matched with the current filter"),
+                    ),
+                  );
+              }
         },
         builder: (context, state) {
           return Row(
