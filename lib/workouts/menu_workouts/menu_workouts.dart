@@ -24,7 +24,6 @@ class _MenuWorkoutsState extends State<MenuWorkouts> {
           IconButton(
             icon: Icon(
               Icons.refresh,
-              color: Colors.white,
             ),
             onPressed: () {
               BlocProvider.of<MenuWorkoutBloc>(context)

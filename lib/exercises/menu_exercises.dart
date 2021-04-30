@@ -25,14 +25,8 @@ class MenuExercises extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.exit_to_app),
             onPressed: () {
-              Future.delayed(Duration(seconds: 1), () {
-                BlocProvider.of<AuthBloc>(context).add(
-                  SignOutAuthenticationEvent(),
-                );
-              });
-              Future.delayed(Duration(seconds: 1), () {
-                RestartWidget.restartApp(context);
-              });
+              BlocProvider.of<AuthBloc>(context).add(
+                  SignOutAuthenticationEvent());      
             },
           ),
         ],

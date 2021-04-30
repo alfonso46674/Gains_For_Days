@@ -32,12 +32,13 @@ void main() async {
   await Firebase.initializeApp();
 
   runApp(
-    RestartWidget(
-      child: BlocProvider(
+    // RestartWidget(
+    //   child:
+       BlocProvider(
         create: (context) => AuthBloc()..add(VerifyAuthenticationEvent()),
         child: MyApp(),
       ),
-    ),
+    // ),
   );
 }
 
@@ -53,7 +54,7 @@ class MyApp extends StatelessWidget {
       home: BlocBuilder<AuthBloc, AuthState>(
         builder: (context, state) {
           if (state is AlreadyAuthState) return MainMenu();
-          if (state is UnAuthState) return Splash();
+          if (state is UnAuthState) return Welcome();
           return Splash();
         },
       ),

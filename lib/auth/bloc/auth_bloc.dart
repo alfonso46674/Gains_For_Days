@@ -31,7 +31,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async* {
     if (event is VerifyAuthenticationEvent) {
       //REQUEST A APIS - Cargar los ejercicios desde que se intenta hacer verificacion en el main
-      await repositorioEjercicios.fetchExercises();
+       repositorioEjercicios.fetchExercises();
       //ACCESO A BD LOCALES
       //REVISAR ACCESO A INTERNET
       //Lo necesario para inicializar datos de la app

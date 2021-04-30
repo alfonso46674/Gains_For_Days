@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:proyecto_integrador/auth/bloc/auth_bloc.dart';
 import 'package:proyecto_integrador/exercises/menu_exercises.dart';
 import 'package:proyecto_integrador/login/bloc/login_bloc.dart';
 import 'package:proyecto_integrador/login/form_body.dart';
@@ -121,14 +122,11 @@ class _WelcomeState extends State<Welcome> {
                     } else if (state is LoginLoadingState) {
                       _showLoading = !_showLoading;
                     }
+                    else if (state is LoginSuccessState) {
+                      BlocProvider.of<AuthBloc>(context).add(VerifyAuthenticationEvent());
+                    }
                   },
                   builder: (context, state) {
-                    if (state is LoginSuccessState) {
-                      //https://stackoverflow.com/questions/55618717/error-thrown-on-navigator-pop-until-debuglocked-is-not-true
-                      Future.delayed(Duration.zero, () {
-                        Navigator.of(context).pushNamed('/mainMenu');
-                      });
-                    }
                     return Container(
                         child: FormBody(
                       onGoogleLoginTap: _googleLogIn,
