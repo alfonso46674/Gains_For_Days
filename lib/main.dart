@@ -46,6 +46,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: APP_TITLE,
+      theme: ThemeData(
+          primarySwatch: Colors.orange,
+          primaryColor: Colors.orange,
+          accentColor: Colors.orange[800]),
       home: BlocBuilder<AuthBloc, AuthState>(
         builder: (context, state) {
           if (state is AlreadyAuthState) return MainMenu();
