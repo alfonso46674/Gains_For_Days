@@ -158,16 +158,18 @@ class _SearchExerciseState extends State<SearchExercise> {
                           builder: (context, state) {
                             if (state is SearchResultState) {
                               return Expanded(
-                                child: ListView.builder(
-                                    scrollDirection: Axis.vertical,
-                                    shrinkWrap: true,
-                                    itemCount: state.searchResult.length,
-                                    itemBuilder:
-                                        (BuildContext context, int index) {
-                                      return ItemExercise(
-                                        ejercicio: state.searchResult[index],
-                                      );
-                                    }),
+                                child: Scrollbar(
+                                  child: ListView.builder(
+                                      scrollDirection: Axis.vertical,
+                                      shrinkWrap: true,
+                                      itemCount: state.searchResult.length,
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        return ItemExercise(
+                                          ejercicio: state.searchResult[index],
+                                        );
+                                      }),
+                                ),
                               );
                             } else if (state is SearchLoadingState) {
                               return Center(
