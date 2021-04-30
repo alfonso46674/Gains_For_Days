@@ -55,7 +55,18 @@ class _AddWorkoutState extends State<AddWorkout> {
     'None'
   ];
 
-  List<String> _equipmentImageList = [];
+    List<String> _equipmentImageList = [
+    'assets/equipment/barbell.jfif',
+    'assets/equipment/sz-bar.jfif',
+    'assets/equipment/dumbbell.jfif',
+    'assets/equipment/gym-mat.jfif',
+    'assets/equipment/swiss-ball.jfif',
+    'assets/equipment/pull-up-bar.jfif',
+    'assets/equipment/bench.jfif',
+    'assets/equipment/incline-bench.png',
+    'assets/equipment/kettlebell.jfif',
+    'assets/misc/dummy-square.png'
+  ];
 
   List<bool> _equipmentSelectedList = [
     false,
@@ -357,8 +368,7 @@ class _AddWorkoutState extends State<AddWorkout> {
           ),
           itemBuilder: (BuildContext context, int index) => ListTile(
             leading: Image.asset(
-              // _equipmentImageList[index],
-              'assets/misc/dummy-square.png',
+              _equipmentImageList[index],
               width: 64,
               height: 64,
             ),
