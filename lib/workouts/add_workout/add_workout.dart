@@ -56,15 +56,15 @@ class _AddWorkoutState extends State<AddWorkout> {
   ];
 
     List<String> _equipmentImageList = [
-    'assets/equipment/barbell.jfif',
-    'assets/equipment/sz-bar.jfif',
-    'assets/equipment/dumbbell.jfif',
-    'assets/equipment/gym-mat.jfif',
-    'assets/equipment/swiss-ball.jfif',
-    'assets/equipment/pull-up-bar.jfif',
-    'assets/equipment/bench.jfif',
+    'assets/equipment/barbell.png',
+    'assets/equipment/sz-bar.png',
+    'assets/equipment/dumbbell.png',
+    'assets/equipment/gym-mat.png',
+    'assets/equipment/swiss-ball.png',
+    'assets/equipment/pull-up-bar.png',
+    'assets/equipment/bench.png',
     'assets/equipment/incline-bench.png',
-    'assets/equipment/kettlebell.jfif',
+    'assets/equipment/kettlebell.png',
     'assets/misc/dummy-square.png'
   ];
 
