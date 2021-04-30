@@ -95,7 +95,7 @@ class _AddWorkoutState extends State<AddWorkout> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Search exercise"),
+        title: Text("Add workout"),
       ),
       body: BlocConsumer<AddworkoutBloc, AddworkoutState>(
         listener: (context, state) {
