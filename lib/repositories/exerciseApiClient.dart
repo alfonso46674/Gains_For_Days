@@ -24,14 +24,16 @@ class ExerciseApiClient {
     final urlImages = '$_baseUrl/exerciseimage/?is_main=True&limit=500';
     final responseImages = await this.httpClient.get(Uri.parse(urlImages));
 
-    print('_appDataBox.length: ${_appDataBox.length}');
-    await _appDataBox.clear();
+    //print('_appDataBox.length: ${_appDataBox.length}');
+    //await _appDataBox.clear();
 
     if (responseExercises.statusCode != 200) {
       throw new Exception('Error getting exercises');
     }
     //if there is no data in the box, fill it
     else if (_appDataBox.length == 0) {
+      print('Retrieving exercises from internet');
+
       //Save the exercises from the response into an array using the json format function from the Exercise model
       final exercisesJson = jsonDecode(responseExercises.body);
       //save the images from the responseImages; Decode the json and transform it into a usable object
