@@ -5,6 +5,7 @@ import 'package:proyecto_integrador/auth/bloc/auth_bloc.dart';
 import 'package:proyecto_integrador/exercises/menu_exercises.dart';
 import 'package:proyecto_integrador/login/bloc/login_bloc.dart';
 import 'package:proyecto_integrador/login/form_body.dart';
+import 'package:proyecto_integrador/register/register.dart';
 import 'package:proyecto_integrador/utils/constants.dart';
 
 class Welcome extends StatefulWidget {
@@ -17,6 +18,8 @@ class Welcome extends StatefulWidget {
 class _WelcomeState extends State<Welcome> {
   LoginBloc _loginBloc;
   bool _showLoading = false;
+  var _emailTc = TextEditingController();
+  var _passwordTc = TextEditingController();
 
   void _googleLogIn(bool _) {
     // invocar al login de firebase con el bloc
@@ -30,6 +33,14 @@ class _WelcomeState extends State<Welcome> {
     _loginBloc.add(LoginAnonymousEvent());
   }
 
+  void _credentialsLogIn(bool _) {
+    print('credentials');
+    _loginBloc.add(LoginWithCredentialEvent(
+      email: _emailTc.text,
+      password: _passwordTc.text,
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +50,7 @@ class _WelcomeState extends State<Welcome> {
           padding: EdgeInsets.symmetric(horizontal: 24.0),
           children: [
             //Espaciado
-            SizedBox(height: 80.0),
+            SizedBox(height: 60.0),
             //Imagen de Cupping
             Image.asset(
               'assets/main/logo.png',
@@ -47,32 +58,48 @@ class _WelcomeState extends State<Welcome> {
             ),
 
             SizedBox(
-              height: 100,
+              height: 40,
+            ),
+            //inputs para email y contraseña
+            Text(
+              'Email:',
+              style: TextStyle(color: Colors.white),
+            ),
+            TextField(
+              controller: _emailTc,
+              style: TextStyle(height: 0.5),
+              decoration: InputDecoration(
+                  filled: true,
+                  labelText: 'Email',
+                  fillColor: Colors.transparent),
             ),
 
-            //Botones de registro y login
+            SizedBox(height: 12.0),
+
             SizedBox(
-              height: 50,
-              width: 300,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: BLUE_COLOR,
-                  shape: new RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(10.0),
-                  ),
-                ),
-                child: Text(
-                  'SIGN UP',
-                  style: TextStyle(color: Colors.white),
-                ),
-                onPressed: () {
-                  Navigator.of(context).pushNamed('/register');
-                },
-              ),
+              height: 20,
             ),
+            //Password
+            Text(
+              'Password',
+              style: TextStyle(color: Colors.white),
+            ),
+
+            TextField(
+              controller: _passwordTc,
+              style: TextStyle(height: 0.5),
+              decoration: InputDecoration(
+                filled: true,
+                labelText: 'Password',
+                fillColor: Colors.transparent,
+              ),
+              obscureText: true,
+            ),
+
             SizedBox(
               height: 40,
             ),
+            //boton signin
             SizedBox(
               height: 50,
               width: 300,
@@ -88,11 +115,35 @@ class _WelcomeState extends State<Welcome> {
                   style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () {
-                  Navigator.of(context).pushNamed('/login');
+                  _credentialsLogIn(true);
                 },
               ),
             ),
 
+            //boton registro
+            Align(
+              alignment: Alignment.centerLeft,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: BLUE_COLOR,
+                  shape: new RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(10.0),
+                  ),
+                ),
+                child: Text(
+                  'SIGN UP',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+                
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Register()));
+                },
+              
+              ),
+            ),
             SafeArea(
               child: BlocProvider(
                 create: (context) {
@@ -121,9 +172,9 @@ class _WelcomeState extends State<Welcome> {
                       );
                     } else if (state is LoginLoadingState) {
                       _showLoading = !_showLoading;
-                    }
-                    else if (state is LoginSuccessState) {
-                      BlocProvider.of<AuthBloc>(context).add(VerifyAuthenticationEvent());
+                    } else if (state is LoginSuccessState) {
+                      BlocProvider.of<AuthBloc>(context)
+                          .add(VerifyAuthenticationEvent());
                     }
                   },
                   builder: (context, state) {
@@ -140,6 +191,7 @@ class _WelcomeState extends State<Welcome> {
               alignment: Alignment.bottomCenter,
               child: _showLoading ? CircularProgressIndicator() : Container(),
             ),
+            //Botones de registro
           ],
         ),
       ),

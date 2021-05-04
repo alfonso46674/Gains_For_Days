@@ -8,7 +8,6 @@ import 'package:path_provider/path_provider.dart';
 import 'package:proyecto_integrador/auth/bloc/auth_bloc.dart';
 import 'package:proyecto_integrador/search/search_exercise.dart';
 import 'package:proyecto_integrador/exercises/menu_exercises.dart';
-import 'package:proyecto_integrador/login/login.dart';
 import 'package:proyecto_integrador/models/exercise.dart';
 import 'package:proyecto_integrador/register/register.dart';
 import 'package:proyecto_integrador/restartWidget.dart';
@@ -63,7 +62,6 @@ class MyApp extends StatelessWidget {
       routes: {
         // '/': (context) => Splash(),
         '/welcome': (context) => Welcome(),
-        '/login': (context) => Login(),
         '/register': (context) => Register(),
         '/mainMenu': (context) => MainMenu(),
         '/menuExercises': (context) => MenuExercises(),
