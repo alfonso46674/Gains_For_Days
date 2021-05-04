@@ -30,27 +30,21 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     AuthEvent event,
   ) async* {
     if (event is VerifyAuthenticationEvent) {
-      //REQUEST A APIS - Cargar los ejercicios desde que se intenta hacer verificacion en el main
-       repositorioEjercicios.fetchExercises();
-      //ACCESO A BD LOCALES
-      //REVISAR ACCESO A INTERNET
-      //Lo necesario para inicializar datos de la app
-      Future.delayed(Duration(seconds: 3));
       if (_authProvider.isLogged()) {
-        // print("-----------");
-        // print(_authProvider.isLogged());
+        //REQUEST A APIS - Cargar los ejercicios desde que se intenta hacer verificacion en el main
+        repositorioEjercicios.fetchExercises();
+        Future.delayed(Duration(seconds: 3));
+
+        //ACCESO A BD LOCALES
+        //REVISAR ACCESO A INTERNET
+        //Lo necesario para inicializar datos de la app
+
         yield AlreadyAuthState();
       } else
         yield UnAuthState();
     }
 
     if (event is SignOutAuthenticationEvent) {
-      // if (FirebaseAuth.instance.currentUser.isAnonymous) {
-      //   await _authProvider.signOutFirebase();
-      // } else {
-      //   await _authProvider.signOutGoogle();
-      //   await _authProvider.signOutFirebase();
-      // }
       await _authProvider.signOut();
 
       yield UnAuthState();
