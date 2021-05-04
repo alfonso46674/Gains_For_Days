@@ -114,7 +114,7 @@ class _RegisterState extends State<Register> {
                     style: TextStyle(color: Colors.white, height: 0.5),
                     decoration: InputDecoration(
                       filled: true,
-                      labelText: 'Repeat password',
+                      labelText: 'Confirm password',
                       fillColor: Colors.transparent,
                     ),
                     obscureText: true,
