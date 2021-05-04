@@ -35,7 +35,7 @@ class _RegisterState extends State<Register> {
                   actions: [
                     MaterialButton(
                       onPressed: () {
-                        Navigator.of(context).pop();
+                        Navigator.of(_).pop();
                       },
                       child: Text("OK"),
                     )
