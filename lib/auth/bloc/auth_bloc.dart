@@ -45,12 +45,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
 
     if (event is SignOutAuthenticationEvent) {
-      if (FirebaseAuth.instance.currentUser.isAnonymous) {
-        await _authProvider.signOutFirebase();
-      } else {
-        await _authProvider.signOutGoogle();
-        await _authProvider.signOutFirebase();
-      }
+      // if (FirebaseAuth.instance.currentUser.isAnonymous) {
+      //   await _authProvider.signOutFirebase();
+      // } else {
+      //   await _authProvider.signOutGoogle();
+      //   await _authProvider.signOutFirebase();
+      // }
+      await _authProvider.signOut();
 
       yield UnAuthState();
     }

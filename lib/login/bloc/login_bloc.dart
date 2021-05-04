@@ -38,7 +38,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         yield LoginSuccessState();
       } catch (e) {
         print(e.toString());
-        yield LoginErrorState(error: "Error al hacer login: ${e.toString()}");
+        yield LoginErrorState(error: "Error al hacer login por Google: ${e.toString()}");
       }
     } else if (event is LoginAnonymousEvent) {
       try {
@@ -47,7 +47,16 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         yield LoginSuccessState();
       } catch (e) {
         print(e.toString());
-        yield LoginErrorState(error: "Error al hacer login: ${e.toString()}");
+        yield LoginErrorState(error: "Error al hacer login por anonimo: ${e.toString()}");
+      }
+    } else if (event is LoginWithCredentialEvent) {
+      try {
+        yield LoginLoadingState();
+        await _authProvider.signInWithCredentials(event.email, event.password);
+        yield LoginSuccessState();
+      } catch (e) {
+        print(e.toString());
+        yield LoginErrorState(error: "Error al hacer login por credenciales: ${e.toString()}");
       }
     }
   }
