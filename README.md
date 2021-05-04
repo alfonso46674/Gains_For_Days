@@ -25,7 +25,7 @@ Aplicación sencilla desarrollada en Flutter que busca ofrecer un repositorio de
 
 ## App Screenshots
 ...
-<img src="screenshot/Capture1.PNG" width="320" height="640" />
+<img src="screenshot/Capture1.JPG" width="320" height="640" />
 <img src="screenshot/Capture2.jpg" width="320" height="640" />
 <img src="screenshot/Capture3.jpg" width="320" height="640" />
 <img src="screenshot/Capture4.jpg" width="320" height="640" />
