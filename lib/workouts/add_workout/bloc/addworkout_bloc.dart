@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
+import 'package:proyecto_integrador/auth/user_auth_provider.dart';
 import 'package:proyecto_integrador/models/exercise.dart';
 import 'package:proyecto_integrador/repositories/enumerations.dart';
 
@@ -14,6 +15,7 @@ part 'addworkout_state.dart';
 class AddworkoutBloc extends Bloc<AddworkoutEvent, AddworkoutState> {
   Box _appDataBox = Hive.box('AppData');
   final _cFirestore = FirebaseFirestore.instance;
+  UserAuthProvider _authProvider = UserAuthProvider();
 
   AddworkoutBloc() : super(AddworkoutInitial());
 
@@ -118,6 +120,7 @@ class AddworkoutBloc extends Bloc<AddworkoutEvent, AddworkoutState> {
 
       Map<String, dynamic> workout = {};
       String mapKey;
+      workout['userEmail'] = await _authProvider.getUser();
       workout['workoutName'] = workoutName;
       workout['exerciseCount'] = exerciseCount;
       for (var i = 0; i < workoutExercises.length; i++) {
