@@ -23,7 +23,8 @@ class Exercise extends Equatable {
   @HiveField(7)
   final String imageUrl;
   //usada para saber si se mandara al workout o no
-  bool selectedForWorkout;
+  @HiveField(8)
+  bool selectedForWorkout = false;
   
 
   Exercise({

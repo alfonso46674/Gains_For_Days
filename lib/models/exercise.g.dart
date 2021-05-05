@@ -25,13 +25,14 @@ class ExerciseAdapter extends TypeAdapter<Exercise> {
       mainMuscles: (fields[5] as List)?.cast<dynamic>(),
       secondaryMuscles: (fields[6] as List)?.cast<dynamic>(),
       imageUrl: fields[7] as String,
+      selectedForWorkout: fields[8] as bool,
     );
   }
 
   @override
   void write(BinaryWriter writer, Exercise obj) {
     writer
-      ..writeByte(8)
+      ..writeByte(9)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -47,7 +48,9 @@ class ExerciseAdapter extends TypeAdapter<Exercise> {
       ..writeByte(6)
       ..write(obj.secondaryMuscles)
       ..writeByte(7)
-      ..write(obj.imageUrl);
+      ..write(obj.imageUrl)
+      ..writeByte(8)
+      ..write(obj.selectedForWorkout);
   }
 
   @override
