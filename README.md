@@ -33,20 +33,20 @@ Aplicación sencilla desarrollada en Flutter que busca ofrecer un repositorio de
 |Register Screen: The user can create a valid email/password account. Both password must match and have more than 5 characters  |
 | <img src="screenshot/Capture10.JPG" width="320" height="640" /> |
 |Exercises Menu Screen: Once logged in, this view will appear to the user. The user can select a category of exercises to explore, search exercises, logout, or go to the workouts view  |
-| <img src="screenshot/Capture2.JPG" width="320" height="640" /> |
+| <img src="screenshot/Capture2.jpg" width="320" height="640" /> |
 |Exercise category Screen: If a category is selected - arms in this case-, the app will show all of the available arm axercises. |
-| <img src="screenshot/Capture3.JPG" width="320" height="640" /> |
+| <img src="screenshot/Capture3.jpg" width="320" height="640" /> |
 |Exercise detail Screen: If an exercise is selected, another view will open with the details of the exercise.|
-| <img src="screenshot/Capture4.JPG" width="320" height="640" /> |
+| <img src="screenshot/Capture4.jpg" width="320" height="640" /> |
 |Search exercise Screen: The user can search an exercise by the category and/or the equipment it requires.|
-| <img src="screenshot/Capture5.JPG" width="320" height="640" /> |
+| <img src="screenshot/Capture5.jpg" width="320" height="640" /> |
 |Search exercise Screen: This view shows the result of searching chest exercises that use dumbbells as equipment|
-| <img src="screenshot/Capture6.JPG" width="320" height="640" /> |
+| <img src="screenshot/Capture6.jpg" width="320" height="640" /> |
 |Workout Menu Screen: The workout view shows all of the workouts that a user has created. It shows the option to reload the view, or create a new workout. Each workout has the option to be deleted, and if selected, a new view will be created with the workout details |
-| <img src="screenshot/Capture7.JPG" width="320" height="640" /> |
+| <img src="screenshot/Capture7.jpg" width="320" height="640" /> |
 |Add workout screen: Similar to the search exercise screen, the user can search the exercises to add to the workout, insert a workout title, and create the workout|
-| <img src="screenshot/Capture9.JPG" width="320" height="640" /> |
+| <img src="screenshot/Capture9.jpg" width="320" height="640" /> |
 |Show workout screen: This shows the exercises that make up the workout. If an exercise is selected, the exercise detail screen will pop up|
-| <img src="screenshot/Capture8.JPG" width="320" height="640" /> |
+| <img src="screenshot/Capture8.jpg" width="320" height="640" /> |
 
 
